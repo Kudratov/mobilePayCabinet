@@ -1,0 +1,28 @@
+.h-100-class{
+  height: 100vh;
+}
+
+.setting-shadow {
+  box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.08) !important;
+}
+
+.setting-shadow h3 {
+  padding-top: 2rem;
+}
+
+.setting-shadow p {
+  padding-bottom: 1rem;
+}
+
+.display-false-class {
+  display: none !important;
+}
+
+.display-true-class {
+  display: block !important;
+}
+
+.card-add-f-btn:hover {
+  color: white !important;
+}
+
