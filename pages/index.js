@@ -1,6 +1,12 @@
 import React from 'react';
+import Router from 'next/router';
 
 class HomeTwo extends React.Component {
+
+    componentDidMount(){
+        Router.push("/login")
+    }
+
     render() {
         return (
             <React.Fragment>

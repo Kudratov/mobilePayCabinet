@@ -160,7 +160,7 @@ class Signup extends Component {
                             <label htmlFor="loginPassword">Password</label>
                             <input type="password" className="form-control" id="loginPassword" onChange={this.handleConfirmedPassword} required placeholder="Confirm Password" />
                         </div>
-                        <a onClick={this.handleRegisterNext} disabled={(this.state.passPos)} className="btn btn-primary btn-block my-4 text-white" type="submit">Next</a>
+                        <a onClick={this.handleRegisterNext} disabled={(this.state.passPos)} className="btn btn-primary btn-block my-4 text-white card-add-f-btn" type="submit">Next</a>
                         </form>
                         <p className="text-3 text-center text-muted">Already have an account? <Link href="/login"><a className="btn-link">Log In</a></Link></p>
                     </div>
@@ -181,7 +181,7 @@ class Signup extends Component {
                             <label htmlFor="emailAddress">SMS Code</label>
                             <input type="text" className="form-control" id="emailAddress" onChange={this.handlePassword} minLength='2' required placeholder="Enter SMS Code" />
                         </div>
-                        <a onClick={this.handleRegisterSecondPage} className="btn btn-primary btn-block my-4 text-white" type="submit">Sign up</a>
+                        <a onClick={this.handleRegisterSecondPage} className="btn btn-primary btn-block my-4 text-white card-add-f-btn" type="submit">Sign up</a>
                         </form>
                         <p className="text-3 text-center text-muted">Already have an account? <Link href="/login"><a className="btn-link">Log In</a></Link></p>
                     </div>
