@@ -39,6 +39,7 @@ class ConfirmSendMoney extends React.Component {
             'Accept': 'application/json',
             Authorization: `Bearer ${this.props.token}`
         }
+        console.log(data)
         let __url = `${url}p2p-api/v1.0/cards/${id}/fundstransfer`;
             axios.post(`${__url}`, JSON.stringify(data), {headers: headers})
             .then((response) => {

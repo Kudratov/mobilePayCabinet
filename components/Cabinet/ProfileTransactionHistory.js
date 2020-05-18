@@ -1,8 +1,68 @@
 import React from 'react';
+import { DateRangePicker, isInclusivelyBeforeDay } from 'react-dates';
+import moment from "moment";
+import {connect} from 'react-redux';
+import Router from 'next/router';
+import axios from 'axios';
 
-import './../../assets/vendor/daterangepicker/daterangepicker.css'
+import TransactionsHistoryLists from './TransactionsHistoryLists';
+
+import {addHistory} from './../../store/actions/cartActions';
+import {url} from './../../store/urls';
+
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 
 class ProfileTransactionHistory extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            startDate: moment().subtract(20, 'days'),
+            endDate: moment(),
+            realStartDate: moment().subtract(20, 'days').calendar().split('/').reverse().join('-'),
+            realEndDate: moment().format('L').split('/').reverse().join('-'),
+            pageNumber: '1',
+            pageSize: '7',
+            cardIds: [],
+            date: 1,
+            transactionHistory: [],
+            currentPageSize: '',
+            currentPageNumber: ''
+        }
+    }
+
+    componentDidMount(){
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            Authorization: `Bearer ${this.props.token}`
+        }
+
+        let _urlTran = `${url}transactions-api/v1.0/transactions`;
+
+        let data = {
+            from: this.state.realStartDate.split("-")[0] + `-` + this.state.realStartDate.split("-")[2] + `-` + this.state.realStartDate.split("-")[1],
+            to: this.state.realEndDate.split("-")[0] + `-` + this.state.realEndDate.split("-")[2] + `-` + this.state.realEndDate.split("-")[1],
+            pageNumber: this.state.pageNumber,
+            pageSize: this.state.pageSize,
+            cardIds: this.state.cardIds
+        }
+        
+        this.state.cardIds.length = 0;
+        this.props.cards.map((element) => {
+            this.state.cardIds.push(element.id);
+        })
+        axios.post(`${_urlTran}`, JSON.stringify(data), {headers: headers})
+            .then((response) => {
+                this.setState({transactionHistory: response.data.transactions.sort(function(a, b){return new Date(b.transactionDate) - new Date(a.transactionDate)})});
+                this.setState({currentPageNumber: response.data.currentPage});
+                this.setState({currentPageSize: response.data.pageSize});
+            })
+            .catch((error) => {
+                
+            })
+    }
+
     render() {        
         return (
             <div>
@@ -16,8 +76,20 @@ class ProfileTransactionHistory extends React.Component {
                         {/* Date Range
                         ========================= */}
                         <div className="col-sm-6 col-md-5 form-group">
-                        <input id="dateRange" type="text" value="11" className="form-control" placeholder="Date Range" />
-                        <span className="icon-inside"><i className="fas fa-calendar-alt" /></span> 
+                        <DateRangePicker 
+                            startDate={this.state.startDate}
+                            startDateId="your_unique_start_date_id"
+                            endDate={this.state.endDate}
+                            endDateId="your_unique_end_date_id"
+                            onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                            focusedInput={this.state.focusedInput}                            
+                            onFocusChange={focusedInput => this.setState({focusedInput})}
+                            isOutsideRange={day => !isInclusivelyBeforeDay(day, moment())}
+                            showDefaultInputIcon
+                            inputIconPosition="after"
+                        />
+                        {/* <input id="dateRange" type="text" value="11" className="form-control" placeholder="Date Range" /> */}
+                        {/* <span className="icon-inside"><i className="fas fa-calendar-alt" /></span>  */}
                         </div>
                         {/* All Filters Link
                         ========================= */}
@@ -62,150 +134,20 @@ class ProfileTransactionHistory extends React.Component {
                     </form>
                 </div>
                 </div>
-                {/* Filter End */}
-                {/* All Transactions
-                ============================================= */}
-                <div className="bg-light shadow-sm rounded py-4 mb-4">
-                <h3 className="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">All Transactions</h3>
-                {/* Title
-                    =============================== */}
-                <div className="transaction-title py-2 px-4">
-                    <div className="row">
-                    <div className="col-2 col-sm-1 text-center"><span className>Date</span></div>
-                    <div className="col col-sm-7">Description</div>
-                    <div className="col-auto col-sm-2 d-none d-sm-block text-center">Status</div>
-                    <div className="col-3 col-sm-2 text-right">Amount</div>
-                    </div>
-                </div>
-                {/* Title End */}
-                {/* Transaction List
-                    =============================== */}
-                <div className="transaction-list">
-                    <div className="transaction-item px-4 py-3" data-toggle="modal" data-target="#transaction-detail">
-                    <div className="row align-items-center flex-row">
-                        <div className="col-2 col-sm-1 text-center"> <span className="d-block text-4 font-weight-300">16</span> <span className="d-block text-1 font-weight-300 text-uppercase">APR</span> </div>
-                        <div className="col col-sm-7"> <span className="d-block text-4">HDFC Bank</span> <span className="text-muted">Withdraw to Bank account</span> </div>
-                        <div className="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span className="text-warning" data-toggle="tooltip" data-original-title="In Progress"><i className="fas fa-ellipsis-h" /></span> </div>
-                        <div className="col-3 col-sm-2 text-right text-4"> <span className="text-nowrap">- $562</span> <span className="text-2 text-uppercase">(USD)</span> </div>
-                    </div>
-                    </div>
-                    <div className="transaction-item px-4 py-3" data-toggle="modal" data-target="#transaction-detail">
-                    <div className="row align-items-center flex-row">
-                        <div className="col-2 col-sm-1 text-center"> <span className="d-block text-4 font-weight-300">15</span> <span className="d-block text-1 font-weight-300 text-uppercase">APR</span> </div>
-                        <div className="col col-sm-7"> <span className="d-block text-4">Envato Pty Ltd</span> <span className="text-muted">Payment Received</span> </div>
-                        <div className="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span className="text-success" data-toggle="tooltip" data-original-title="Completed"><i className="fas fa-check-circle" /></span> </div>
-                        <div className="col-3 col-sm-2 text-right text-4"> <span className="text-nowrap">+ $562</span> <span className="text-2 text-uppercase">(USD)</span> </div>
-                    </div>
-                    </div>
-                    <div className="transaction-item px-4 py-3" data-toggle="modal" data-target="#transaction-detail">
-                    <div className="row align-items-center flex-row">
-                        <div className="col-2 col-sm-1 text-center"> <span className="d-block text-4 font-weight-300">04</span> <span className="d-block text-1 font-weight-300 text-uppercase">APR</span> </div>
-                        <div className="col col-sm-7"> <span className="d-block text-4">HDFC Bank</span> <span className="text-muted">Withdraw to Bank account</span> </div>
-                        <div className="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span className="text-success" data-toggle="tooltip" data-original-title="Completed"><i className="fas fa-check-circle" /></span> </div>
-                        <div className="col-3 col-sm-2 text-right text-4"> <span className="text-nowrap">- $106</span> <span className="text-2 text-uppercase">(USD)</span> </div>
-                    </div>
-                    </div>
-                    <div className="transaction-item px-4 py-3" data-toggle="modal" data-target="#transaction-detail">
-                    <div className="row align-items-center flex-row">
-                        <div className="col-2 col-sm-1 text-center"> <span className="d-block text-4 font-weight-300">28</span> <span className="d-block text-1 font-weight-300 text-uppercase">MAR</span> </div>
-                        <div className="col col-sm-7"> <span className="d-block text-4">Patrick Cary</span> <span className="text-muted">Refund</span> </div>
-                        <div className="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span className="text-success" data-toggle="tooltip" data-original-title="Completed"><i className="fas fa-check-circle" /></span> </div>
-                        <div className="col-3 col-sm-2 text-right text-4"> <span className="text-nowrap">+ $60</span> <span className="text-2 text-uppercase">(USD)</span> </div>
-                    </div>
-                    </div>
-                    <div className="transaction-item px-4 py-3" data-toggle="modal" data-target="#transaction-detail">
-                    <div className="row align-items-center flex-row">
-                        <div className="col-2 col-sm-1 text-center"> <span className="d-block text-4 font-weight-300">28</span> <span className="d-block text-1 font-weight-300 text-uppercase">MAR</span> </div>
-                        <div className="col col-sm-7"> <span className="d-block text-4">Patrick Cary</span> <span className="text-muted">Payment Sent</span> </div>
-                        <div className="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span className="text-danger" data-toggle="tooltip" data-original-title="Cancelled"><i className="fas fa-times-circle" /></span> </div>
-                        <div className="col-3 col-sm-2 text-right text-4"> <span className="text-nowrap">- $60</span> <span className="text-2 text-uppercase">(USD)</span> </div>
-                    </div>
-                    </div>
-                    <div className="transaction-item px-4 py-3" data-toggle="modal" data-target="#transaction-detail">
-                    <div className="row align-items-center flex-row">
-                        <div className="col-2 col-sm-1 text-center"> <span className="d-block text-4 font-weight-300">16</span> <span className="d-block text-1 font-weight-300 text-uppercase">FEB</span> </div>
-                        <div className="col col-sm-7"> <span className="d-block text-4">HDFC Bank</span> <span className="text-muted">Withdraw to Bank account</span> </div>
-                        <div className="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span className="text-success" data-toggle="tooltip" data-original-title="Completed"><i className="fas fa-check-circle" /></span> </div>
-                        <div className="col-3 col-sm-2 text-right text-4"> <span className="text-nowrap">- $1498</span> <span className="text-2 text-uppercase">(USD)</span> </div>
-                    </div>
-                    </div>
-                    <div className="transaction-item px-4 py-3" data-toggle="modal" data-target="#transaction-detail">
-                    <div className="row align-items-center flex-row">
-                        <div className="col-2 col-sm-1 text-center"> <span className="d-block text-4 font-weight-300">15</span> <span className="d-block text-1 font-weight-300 text-uppercase">FEB</span> </div>
-                        <div className="col col-sm-7"> <span className="d-block text-4">Envato Pty Ltd</span> <span className="text-muted">Payment Received</span> </div>
-                        <div className="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span className="text-success" data-toggle="tooltip" data-original-title="Completed"><i className="fas fa-check-circle" /></span> </div>
-                        <div className="col-3 col-sm-2 text-right text-4"> <span className="text-nowrap">+ $1498</span> <span className="text-2 text-uppercase">(USD)</span> </div>
-                    </div>
-                    </div>
-                </div>
-                {/* Transaction List End */}
-                {/* Transaction Item Details Modal
-                    =========================================== */}
-                <div id="transaction-detail" className="modal fade" role="dialog" aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-centered transaction-details" role="document">
-                    <div className="modal-content">
-                        <div className="modal-body">
-                        <div className="row no-gutters">
-                            <div className="col-sm-5 d-flex justify-content-center bg-primary rounded-left py-4">
-                            <div className="my-auto text-center">
-                                <div className="text-17 text-white my-3"><i className="fas fa-building" /></div>
-                                <h3 className="text-4 text-white font-weight-400 my-3">Envato Pty Ltd</h3>
-                                <div className="text-8 font-weight-500 text-white my-4">$557.20</div>
-                                <p className="text-white">15 March 2019</p>
-                            </div>
-                            </div>
-                            <div className="col-sm-7">
-                            <h5 className="text-5 font-weight-400 m-3">Transaction Details
-                                <button type="button" className="close font-weight-400" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                            </h5>
-                            <hr />
-                            <div className="px-3">
-                                <ul className="list-unstyled">
-                                <li className="mb-2">Payment Amount <span className="float-right text-3">$562.00</span></li>
-                                <li className="mb-2">Fee <span className="float-right text-3">-$4.80</span></li>
-                                </ul>
-                                <hr className="mb-2" />
-                                <p className="d-flex align-items-center font-weight-500 mb-4">Total Amount <span className="text-3 ml-auto">$557.20</span></p>
-                                <ul className="list-unstyled">
-                                <li className="font-weight-500">Paid By:</li>
-                                <li className="text-muted">Envato Pty Ltd</li>
-                                </ul>
-                                <ul className="list-unstyled">
-                                <li className="font-weight-500">Transaction ID:</li>
-                                <li className="text-muted">26566689645685976589</li>
-                                </ul>
-                                <ul className="list-unstyled">
-                                <li className="font-weight-500">Description:</li>
-                                <li className="text-muted">Envato March 2019 Member Payment</li>
-                                </ul>
-                                <ul className="list-unstyled">
-                                <li className="font-weight-500">Status:</li>
-                                <li className="text-muted">Completed</li>
-                                </ul>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                {/* Transaction Item Details Modal End */}
-                {/* Pagination
-                    ============================================= */}
-                <ul className="pagination justify-content-center mt-4 mb-0">
-                    <li className="page-item disabled"> <a className="page-link" href="#" tabIndex={-1}><i className="fas fa-angle-left" /></a> </li>
-                    <li className="page-item"><a className="page-link" href="#">1</a></li>
-                    <li className="page-item active"> <a className="page-link" href="#">2 <span className="sr-only">(current)</span></a> </li>
-                    <li className="page-item"><a className="page-link" href="#">3</a></li>
-                    <li className="page-item d-flex align-content-center flex-wrap text-muted text-5 mx-1">......</li>
-                    <li className="page-item"><a className="page-link" href="#">15</a></li>
-                    <li className="page-item"> <a className="page-link" href="#"><i className="fas fa-angle-right" /></a> </li>
-                </ul>
-                {/* Paginations end */} 
-                </div>
+                <TransactionsHistoryLists history={this.state.transactionHistory} currentPage={this.state.currentPageNumber} currentPageSize={this.state.currentPageSize}/>
             </div>
         );
     }
 }
 
-export default ProfileTransactionHistory
+const mapStateToProps = (state)=>{
+    return {
+        language: state.language,
+        token: state.authToken,
+        pNumber: state.phoneNumber,
+        cardCred: state.cardCred,
+        cards: state.cards
+    }
+}
+
+export default connect(mapStateToProps)(ProfileTransactionHistory);

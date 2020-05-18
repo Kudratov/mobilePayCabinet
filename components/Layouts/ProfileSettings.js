@@ -1,14 +1,14 @@
 import React from 'react';
-import CabinetPayment from './../Cabinet/CaibinetPayment';
-import MainFooter from './../Layouts/MainFooter';
 import ProfileDetails from './../Cabinet/ProfileDetails';
 import AviableBalance from './../Cabinet/AviableBalance';
-import ProfileTransactionHistory from './../Cabinet/ProfileTransactionHistory';
+import AccountSettings from './../Cabinet/AccountSettings';
+import MainFooter from './../Layouts/MainFooter';
+import PersonalDetails from './../Cabinet/PersonalDetails';
+import EmailAddress from './../Cabinet/EmailAddress';
+import PhoneNumber from './../Cabinet/PhoneNumber';
+import SecurtyPassword from './../Cabinet/SecurtyPassword';
 
-class ProfileTransactions extends React.Component {
-
-    
-
+class ProfileSettings extends React.Component {
     render() {        
         return (
             <div id="main-wrapper">
@@ -20,7 +20,11 @@ class ProfileTransactions extends React.Component {
                                 <AviableBalance />                                
                             </aside>
                             <div className="col-lg-9">
-                                <ProfileTransactionHistory />                            
+                                <PersonalDetails />
+                                <AccountSettings />                          
+                                <EmailAddress />                      
+                                <PhoneNumber />                
+                                <SecurtyPassword />                
                             </div>
                         </div>
                     </div>
@@ -31,4 +35,4 @@ class ProfileTransactions extends React.Component {
     }
 }
 
-export default ProfileTransactions
+export default ProfileSettings

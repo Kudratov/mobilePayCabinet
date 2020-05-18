@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Router from 'next/router';
 import axios from 'axios';
+import cookies from 'next-cookies';
+import Cookie from 'js-cookie';
 
 import {addCard} from './../../store/actions/cartActions';
 import {url} from './../../store/urls';
@@ -26,17 +28,18 @@ class SecondaryMenu extends React.Component {
                     Router.push('/');
             })
         } else if(!this.props.token && !this.props.pNumber) {
-            if(JSON.parse(localStorage.getItem('user-credentials')).token.length && JSON.parse(localStorage.getItem('user-credentials')).pNumber.length){
-                this.props.dispatch(addAuthtoken(JSON.parse(localStorage.getItem('user-credentials')).token));
-                this.props.dispatch(addPhoneNumber(JSON.parse(localStorage.getItem('user-credentials')).pNumber));
+            if(true){
+                this.props.dispatch(addAuthtoken(Cookie.get('authtoken')));
+                this.props.dispatch(addPhoneNumber(Cookie.get('phonenumber')));
                 const headers = {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    Authorization: `Bearer ${JSON.parse(localStorage.getItem('user-credentials')).token}`
+                    Authorization: `Bearer ${Cookie.get('authtoken')}`
                 }
                 let __url = `${url}cards-api/v1.0/cards`;
                 axios.get(`${__url}`, {headers: headers})
                 .then((response) => {
+                    Cookie.set('verifiedCon', 'known');
                     this.props.dispatch(addCard(response.data));
                 })
                 .catch((error) => {

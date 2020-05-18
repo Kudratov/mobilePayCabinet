@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import Router from 'next/router';
+import Toast from 'light-toast';
 import Link from 'next/link';
 
 import {addCardCredentails, addCard, addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
@@ -23,8 +24,8 @@ class CreditCards extends React.Component {
             cardExp: '',
             realCardExp: '',
             smsCode: '',
-            cardIsMain: true,
-            cardN: ''
+            cardIsMain: undefined,
+            cardN: undefined
         }
         this.handleCardNumber = this.handleCardNumber.bind(this);
         this.handleCardExp = this.handleCardExp.bind(this);
@@ -34,11 +35,17 @@ class CreditCards extends React.Component {
         this.handleSmsValue = this.handleSmsValue.bind(this);
         this.handleShowPhNum = this.handleShowPhNum.bind(this);
         this.handleDeleteCard = this.handleDeleteCard.bind(this);
-        this.setStateForCard = this.setStateForCard.bind(this);
+
         this.handleCardPos = this.handleCardPos.bind(this);
         this.setCardName = this.setCardName.bind(this);
         this.handleCardUpdate = this.handleCardUpdate.bind(this);
+        this.handleActivateCard = this.handleActivateCard.bind(this);
+        this.handleCardIsMain = this.handleCardIsMain.bind(this);
     }
+
+    // componentDidMount () {
+    //     Toast.fail('content', 3000)
+    // }
 
     handleCardUpdate(e){
         let id = e.target.id;
@@ -102,13 +109,9 @@ class CreditCards extends React.Component {
         }
     }
 
-    setStateForCard (isMain, cardName) {
-        if(isMain === 'true'){
-            this.setState({cardIsMain: isMain ? true : true});
-        } else {
-            this.setState({cardIsMain: isMain ? false : false});
-        }
-        this.setState({cardN: cardName ? cardName : '1'});
+    handleCardIsMain (isMain, cardName) {
+        this.setState({cardIsMain: isMain});
+        this.setState({cardN: cardName});
     }
 
     handleDeleteCard (e, id) {
@@ -131,21 +134,19 @@ class CreditCards extends React.Component {
                 this.props.dispatch(addCard(response.data));
             })
             .catch((error) => {
-                    localStorage.removeItem('user-credentials');
-                    console.log(error);
-                    Router.push('/');
+                
             });
         })
         .catch((error) => {
-                localStorage.removeItem('user-credentials');
-                console.log(error);
-                Router.push('/');
+            
         });
     }
 
     handleShowPhNum () {
-        let info = this.props.cardCred.split(' ');
-        return info[1];
+        if(this.props.cardCred != 'undefined' && this.props.cardCred.length){
+            let info = this.props.cardCred.split(' ');
+            return `${info[1].replace(/[^\d]/g, "").replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4 $5").split(' ')[0]} ${info[1].replace(/[^\d]/g, "").replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4 $5").split(' ')[1]} *** ** ${info[1].replace(/[^\d]/g, "").replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4 $5").split(' ')[4]}`
+        }        
     }
 
     handleSmsValue (e) {
@@ -156,7 +157,7 @@ class CreditCards extends React.Component {
     }
 
     handleSmsCode (e) {
-        let controllerAddCardSmsVer = document.getElementById("controller-modal-add-card-sms-verfication");
+        let controllerAddCardSmsVer = document.getElementById("controller-modal-add-card-sms-verfication");     
         let __smsCode = this.state.smsCode;
         let data = {
             code: __smsCode
@@ -190,17 +191,27 @@ class CreditCards extends React.Component {
                             Router.push('/');
                     });
 
+                    Toast.success('Card successfully added', 3000)
                     controllerAddCardSmsVer.click();
                 }
             })
             .catch((error) => {
+                Toast.fail('Something went wrong!', 3000);
                 controllerAddCardSmsVer.click();
             })
         }
     }
 
+    handleActivateCard (id, ownerPhoneNumber, cardNumber) {
+        this.setState({cardNumber})
+        this.props.dispatch(addCardCredentails(id, ownerPhoneNumber));
+        let controllerAddCard = document.getElementById("controller-modal-add-card");
+        controllerAddCard.click();
+    }
+
     handleAddCard () {
-        let controllerAddCard = document.getElementById("controller-modal-add-card");   
+        let dismissModal = document.getElementById("controller-modal-add-card-dismiss");
+        let controllerAddCard = document.getElementById("controller-modal-add-card");
         let realN = this.state.realCardNumber;
         let realE = this.state.realCardExp;
         let realT = this.state.cardType;
@@ -222,13 +233,15 @@ class CreditCards extends React.Component {
             axios.post(`${__url}`, JSON.stringify(data), {headers: headers})
                 .then((response) => {
                     if(response.status === 201){
-                        console.log(response)
-                        controllerAddCard.click();
+                        
                         this.props.dispatch(addCardCredentails(response.data.id, response.data.ownerPhoneNumber));
+                        controllerAddCard.click();
+
                     }
                 })
                 .catch((error) => {
-                    console.log(error)
+                    Toast.fail('Card not found', 3000)
+                    dismissModal.click();
                 })
         }
     }
@@ -276,36 +289,54 @@ class CreditCards extends React.Component {
                             return (
                                 <>
 
-                                    <div className="col-12 col-sm-6 col-lg-4">
-                                        <div className="account-card account-card-primary text-white rounded p-3 mb-4 mb-lg-0">                        
-                                            <p className="d-flex align-items-center">
-                                                <span className="text-2 opacity-9 text-white">{element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim()}</span>
-                                                <span className="text-2 opacity-9 text-white ml-auto">{element.expiresOn ? element.expiresOn.substring(0,2) + "/" + element.expiresOn.substring(2) : ''}</span>
-                                            </p>
-                                            <p className="d-flex align-items-center">
-                                            <span className="text-4 opacity-9 text-white">{element.balance.toLocaleString().split(',').join(' ')} {element.currencyCode}</span> {element.isMainCard ? <span className="bg-light text-0 text-body font-weight-500 rounded-pill d-inline-block px-2 line-height-4 opacity-8 ml-auto">Primary</span> : ''} </p>
-                                            <p className="d-flex align-items-center m-0"> <span className="text-uppercase font-weight-500 text-white">{element.name}</span> <img className="ml-auto" src="./../../images/visa.png" alt="visa" title /> </p>
-                                            <div className="account-card-overlay rounded"> <a onClick={e => this.setStateForCard(`${element.isMainCard}`, element.name)} data-target={`#edit-card-details-${element.id}`} data-toggle="modal" className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-edit" /></span>Edit</a> <a href="#" onClick={e=>this.handleDeleteCard(e, `${element.id}`)} className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-minus-circle" /></span>Delete</a> </div>
+                                    {element.confirmedByOwner &&
+                                        <div className="col-12 col-sm-6 col-lg-4">
+                                            <div className="account-card account-card-primary text-white rounded p-3 mb-4 mb-lg-0">                        
+                                                <p className="d-flex align-items-center">
+                                                    <span className="text-2 opacity-9 text-white">{element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}</span>
+                                                    <span className="text-2 opacity-9 text-white ml-auto">{element.expiresOn ? element.expiresOn.substring(0,2) + "/" + element.expiresOn.substring(2) : ''}</span>
+                                                </p>
+                                                <p className="d-flex align-items-center">
+                                                <span className="text-4 opacity-9 text-white">{element.balance.toLocaleString().split(',').join(' ')} {element.currencyCode}</span> {element.isMainCard ? <span className="bg-light text-0 text-body font-weight-500 rounded-pill d-inline-block px-2 line-height-4 opacity-8 ml-auto">Primary</span> : ''} </p>
+                                                <p className="d-flex align-items-center m-0"> <span className="text-uppercase font-weight-500 text-white">{element.name}</span> <img className="ml-auto" src="./../../images/visa.png" alt="visa" title /> </p>
+                                                <div className="account-card-overlay rounded"> <a onClick={e => this.handleCardIsMain(element.isMainCard, element.name)} data-target={`#edit-card-details-${element.id}`} data-toggle="modal" className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-edit" /></span>Edit</a> <a href="#" onClick={e=>this.handleDeleteCard(e, `${element.id}`)} className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-minus-circle" /></span>Delete</a> </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    }
+
+
                                     </>
                                 )
                         })}                        
                         </>
                     }
 
-{/* 
-                    CARD FOR INACTIVE CARD TYPE
-                    <div className="col-12 col-sm-6 col-lg-4">
-                        <div className="account-card text-white rounded p-3 mb-4 mb-lg-0">
-                            <p className="text-4">XXXX-XXXX-XXXX-6296</p>
-                            <p className="d-flex align-items-center"> <span className="account-card-expire text-uppercase d-inline-block opacity-6 mr-2">Valid<br />
-                                thru<br />
-                            </span> <span className="text-4 opacity-9">07/23</span> </p>
-                            <p className="d-flex align-items-center m-0"> <span className="text-uppercase font-weight-500">Smith Rhodes</span> <img className="ml-auto" src="./../../images/mastercard.png" alt="mastercard" title /> </p>
-                            <div className="account-card-overlay rounded"> <a href="#" data-target="#edit-card-details" data-toggle="modal" className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-edit" /></span>Edit</a> <a href="#" className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-minus-circle" /></span>Delete</a> </div>
-                        </div>
-                    </div> */}
+
+                    {this.props.cards && 
+                        <>
+                        {this.props.cards.map((element, i) => {
+                            return (
+                                <>
+
+                                    {element.confirmedByOwner === false &&
+                                        <div className="col-12 col-sm-6 col-lg-4">
+                                            <div className="account-card text-white rounded p-3 mb-4 mb-lg-0">
+                                                <p className="text-4">{element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}</p>
+                                                <p className="d-flex align-items-center"> <span className="account-card-expire text-uppercase d-inline-block opacity-6 mr-2">Valid<br />
+                                                    thru<br />
+                                                </span> <span className="text-2 opacity-9">{element.expiresOn ? element.expiresOn.substring(0,2) + "/" + element.expiresOn.substring(2) : ''}</span> </p>
+                                                <p className="d-flex align-items-center m-0"> <span className="text-uppercase font-weight-500">{element.name}</span> <img className="ml-auto" src="./../../images/mastercard.png" alt="mastercard" title /> </p>
+                                                <div className="account-card-overlay rounded"> <a href="#" data-target="#edit-card-details" onClick={e => this.handleActivateCard(element.id, element.ownerPhoneNumber, element.cardNumber)} data-toggle="modal" className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-chevron-up" /></span>Activate</a> <a href="#" className="text-light btn-link mx-2" onClick={e => this.handleDeleteCard(e, element.id)}><span className="mr-1"><i className="fas fa-minus-circle" /></span>Delete</a> </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                    </>
+                                )
+                        })}                        
+                        </>
+                    }                    
 
                     <div className="col-12 col-sm-6 col-lg-4"> <a data-target="#add-new-card-details" data-toggle="modal" className="account-card-new d-flex align-items-center rounded h-100 p-3 mb-4 mb-lg-0">
                         <p className="w-100 text-center line-height-4 m-0"> <span className="text-3"><i className="fas fa-plus-circle" /></span> <span className="d-block text-body text-3">Add New Card</span> </p>
@@ -335,7 +366,7 @@ class CreditCards extends React.Component {
                                                 <label htmlFor="edircardNumber">Card Number</label>
                                                 <div className="input-group">
                                                 <div className="input-group-prepend"> <span className="input-group-text"><img className="ml-auto" src="./../../images/visa.png" alt="visa" title /></span> </div>
-                                                <input type="text" className="form-control" data-bv-field="edircardNumber" id="edircardNumber" disabled defaultValue={`${element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim()}`} placeholder="Card Number" />
+                                                <input type="text" className="form-control" data-bv-field="edircardNumber" id="edircardNumber" disabled defaultValue={`${element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** ${element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}`} placeholder="Card Number" />
                                                 </div>
                                             </div>
                                             <div className="form-row">
@@ -349,13 +380,13 @@ class CreditCards extends React.Component {
                                             <div className="form-row">
                                                 <div className="col-lg-6">
                                                     <div className="form-check custom-control custom-checkbox">
-                                                        <input id="remember" name="remember-1" onClick={this.handleCardPos} value="true" defaultChecked={this.state.cardIsMain} className="custom-control-input" type="checkbox" />
+                                                        <input className="custom-control-input" type="checkbox" id="remember" name="remember-1" onChange={this.handleCardPos} value="true" checked={this.state.cardIsMain} />
                                                         <label className="custom-control-label" htmlFor="remember">Main Card</label>
                                                     </div>
                                                 </div>
                                                 <div className="col-lg-6 pb-2">
                                                     <div className="form-check custom-control custom-checkbox">
-                                                        <input id="remember-me" name="remember" onClick={this.handleCardPos} value="false" defaultChecked={!this.state.cardIsMain} className="custom-control-input" type="checkbox" />
+                                                        <input className="custom-control-input" type="checkbox" id="remember-me" name="remember" onChange={this.handleCardPos} value="false" checked={!this.state.cardIsMain} />
                                                         <label className="custom-control-label" htmlFor="remember-me">Secondary Card</label>
                                                     </div>
                                                 </div>
@@ -422,6 +453,7 @@ class CreditCards extends React.Component {
                         </div>
                         <a className="btn btn-primary btn-block card-add-f-btn text-white" onClick={this.handleAddCard} data-toggle="modal" type="submit">Add Card</a>
                         <a className="display-false-class" id="controller-modal-add-card" data-dismiss="modal" data-target="#add-new-card-sms-verfication" data-toggle="modal"></a>
+                        <a className="display-false-class" id="controller-modal-add-card-dismiss" data-dismiss="modal"></a>
                         </form>
                     </div>
                     </div>
@@ -439,7 +471,7 @@ class CreditCards extends React.Component {
                         <form id="addCard" method="post">
                         <div className="form-group">
                             <label htmlFor="cardNumber">Card Number</label>
-                            <input type="text" className="form-control" data-bv-field="cardnumber" id="cardNumber" value={this.state.cardNumber} disabled="true" />
+                            <input type="text" className="form-control" data-bv-field="cardnumber" id="cardNumber" value={`${this.state.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** ${this.state.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}`} disabled="true" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="cardNumber">SMS Sent Number</label>

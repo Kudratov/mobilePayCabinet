@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Router from 'next/router';
 import axios from 'axios';
+import cookies from 'next-cookies';
+import Cookie from 'js-cookie';
 
 import {addCard} from './../../store/actions/cartActions';
 import {url} from './../../store/urls';
@@ -31,17 +33,18 @@ class AviableBalance extends React.Component {
                     Router.push('/');
             })
         } else if(!this.props.token && !this.props.pNumber) {
-            if(JSON.parse(localStorage.getItem('user-credentials')).token.length && JSON.parse(localStorage.getItem('user-credentials')).pNumber.length){
-                this.props.dispatch(addAuthtoken(JSON.parse(localStorage.getItem('user-credentials')).token));
-                this.props.dispatch(addPhoneNumber(JSON.parse(localStorage.getItem('user-credentials')).pNumber));
+            if(true){
+                this.props.dispatch(addAuthtoken(Cookie.get('authtoken')));
+                this.props.dispatch(addPhoneNumber(Cookie.get('phonenumber')));
                 const headers = {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    Authorization: `Bearer ${JSON.parse(localStorage.getItem('user-credentials')).token}`
+                    Authorization: `Bearer ${Cookie.get('authtoken')}`
                 }
                 let __url = `${url}cards-api/v1.0/cards`;
                 axios.get(`${__url}`, {headers: headers})
                 .then((response) => {
+                    Cookie.set('verifiedCon', 'known');
                     this.props.dispatch(addCard(response.data));
                 })
                 .catch((error) => {
@@ -59,10 +62,12 @@ class AviableBalance extends React.Component {
         }
         let balance = 0;
         this.props.cards.map((element, i) => {
-            balance = balance + element.balance;
-            if(this.props.cards.length === i + 1){
-                return 11;
-            }
+            if(element.confirmedByOwner === true){
+                balance = balance + element.balance;
+            }            
+            // if(this.props.cards.length === i + 1){
+            //     return 11;
+            // }
         })
         return balance.toLocaleString().split(',').join(' ')
     }
@@ -71,7 +76,7 @@ class AviableBalance extends React.Component {
         return (
             <div className="bg-light shadow-sm rounded text-center p-3 mb-4">
                 <div className="text-17 text-light my-3"><i className="fas fa-wallet" /></div>
-                <h3 className="text-9 font-weight-400">{this.getBalance()}</h3>
+                <h3 className="text-9 font-weight-400">{this.getBalance()} UZS</h3>
                 <p className="mb-2 text-muted opacity-8">Available Balance</p>
                 <hr className="mx-n3" />
             </div>

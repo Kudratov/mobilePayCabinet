@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import moment from 'moment';
+import Toast from 'light-toast';
 
 import {url} from './../../store/urls';
 import {addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
@@ -65,20 +67,24 @@ class Login extends Component {
         axios.post(`${__url}`, JSON.stringify(data), {headers: headers})
             .then((response) => {
                 if(response.status === 200){
-                    let token = response.data.auth_token;
+                    document.cookie = `authtoken=${response.data.authToken};`;
+                    document.cookie = `phonenumber=${data.userName};`;
+                    document.cookie = `expr=${moment().add(20, "minutes").format('LTS')}`;
+                    document.cookie = `pathName=/login`;
+                    document.cookie = `verifiedCon=not_known`;
+                    let token = response.data.authToken;
                     this.props.dispatch(addAuthtoken(token));
                     this.props.dispatch(addPhoneNumber(this.state.phoneNumber.replace(/[^\d]/g, "")));                
                     let __data = {
                         token: token,
                         pNumber: this.state.phoneNumber.replace(/[^\d]/g, "")
                     }
-
-                    localStorage.setItem("user-credentials", JSON.stringify(__data));
                     
                     Router.push('/cabinet-main');
                 }
             })
             .catch((error) => {
+                Toast.fail('Wrong password!', 3000);
                 Router.push('/login');
             })
       }

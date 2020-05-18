@@ -1,19 +1,40 @@
 import React from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
+import Cookie from 'js-cookie';
 
-import "./../../assets/vendor/bootstrap/css/bootstrap.min.css";
-import "./../../assets/vendor/font-awesome/css/all.min.css";
+// import 'react-dates/initialize';
+// import 'react-dates/lib/css/_datepicker.css';
 import "./../../assets/sass/stylesheet.scss";
+import "./../../assets/vendor/font-awesome/css/all.min.css";
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 
 
 class MainNavbar extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.handleSignOut = this.handleSignOut.bind(this);
+    }
+
+    handleSignOut(){
+        Cookie.remove("authtoken");
+        Cookie.remove("phonenumber");
+        Cookie.remove("expr");
+        Cookie.remove("pathName");
+        Cookie.remove("verifiedCon");
+
+        Router.push("/login")
+    }
     
     render() {
         const classForMain = (this.props.url === 'main') ? 'active' : '';
         const classForTransfer = (this.props.url === 'transfer') ? 'active' : '';
         const classForPayment = (this.props.url === 'payment') ? 'active' : '';
         const classForHistory = (this.props.url === 'history') ? 'active' : '';
-        const classForCards = (this.props.url === 'cards') ? 'active' : '';      
+        const classForCards = (this.props.url === 'cards') ? 'active' : '';   
+        const classForSettings = (this.props.url === 'settings') ? 'active' : '';   
         return (
             <div id="main-wrapper">
                 <header id="header">
@@ -48,8 +69,8 @@ class MainNavbar extends React.Component {
                     ============================== */}
                         <nav className="login-signup navbar navbar-expand">
                             <ul className="navbar-nav">
-                            <li><a href="profile.html">Settings</a> </li>
-                            <li className="align-items-center h-auto ml-sm-3"><a className="btn btn-outline-primary shadow-none d-none d-sm-block" href>Sign out</a></li>
+                            <li className={classForSettings}><Link href="/cabinet-settings">Settings</Link> </li>
+                            <li className="align-items-center h-auto ml-sm-3"><a onClick={this.handleSignOut} className="btn btn-outline-primary shadow-none d-none d-sm-block card-add-f-btn" href>Sign out</a></li>
                             </ul>
                         </nav>
                         {/* Login & Signup Link end */} 

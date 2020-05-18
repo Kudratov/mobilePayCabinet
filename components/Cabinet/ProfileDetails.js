@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 class ProfileDetails extends React.Component {
     render() {        
@@ -10,7 +11,7 @@ class ProfileDetails extends React.Component {
                     </div>
                     </div>
                     <p className="text-3 font-weight-500 mb-2">Hello, Smith Rhodes</p>
-                    <p className="mb-2"><a href="profile.html" className="text-5 text-light" data-toggle="tooltip" title="Edit Profile"><i className="fas fa-edit" /></a></p>
+                    <p className="mb-2"><Link href="/cabinet-settings"><a className="text-5 text-light" data-toggle="tooltip" title="Edit Profile"><i className="fas fa-edit" /></a></Link></p>
                 </div>            
         );
     }

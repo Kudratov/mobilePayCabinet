@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import moment from 'moment';
 
 import {url} from './../../store/urls';
 import {addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
@@ -105,7 +106,7 @@ class Signup extends Component {
 
       handleSmsCode (e) {
           let smsCode = e.target.value;
-          if(smsCode.length === 4){
+          if(smsCode){
             this.setState({smsCode});
           }
       }
@@ -115,7 +116,7 @@ class Signup extends Component {
             code: this.state.smsCode,
             password: this.state.confirmendPassword
         }
-        let __url = `${url}identity-api/v1.0/users/${this.state.phoneNumber}/verify/`;
+        let __url = `${url}identity-api/v1.0/users/${this.state.phoneNumber.replace(/[^\d]/g, '')}/verify/`;
         const headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -123,15 +124,11 @@ class Signup extends Component {
         axios.put(`${__url}`, JSON.stringify(data), {headers: headers})
             .then((response) => {
                 if(response.status === 200){
-                    let token = response.data.auth_token;
+                    let token = response.data.authToken;
                     this.props.dispatch(addAuthtoken(token));
-                    
-                    let __data = {
-                        token: token,
-                        pNumber: this.state.phoneNumber
-                    }
-
-                    localStorage.setItem("user-credentials", JSON.stringify(__data));
+                    document.cookie = `authtoken=${token}`;
+                    document.cookie = `phonenumber=${this.state.phoneNumber.replace(/[^\d]/g, '')};`;
+                    document.cookie = `expr=${moment().add(20, "minutes").format('LTS')}`;
                     
                     Router.push('/cabinet-main');
                 }
@@ -179,7 +176,7 @@ class Signup extends Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="emailAddress">SMS Code</label>
-                            <input type="text" className="form-control" id="emailAddress" onChange={this.handlePassword} minLength='2' required placeholder="Enter SMS Code" />
+                            <input type="text" className="form-control" id="emailAddress" onChange={this.handleSmsCode} minLength='2' required placeholder="Enter SMS Code" />
                         </div>
                         <a onClick={this.handleRegisterSecondPage} className="btn btn-primary btn-block my-4 text-white card-add-f-btn" type="submit">Sign up</a>
                         </form>
