@@ -29,4 +29,13 @@
 .disactive {
   pointer-events: none;
   cursor: default;
-} 
+}
+
+.logo-src-payment{
+  cursor: pointer;
+  border: .5px solid white;
+}
+
+.logo-img-payment{
+  height: 9rem;
+}

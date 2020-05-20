@@ -1,0 +1,85 @@
+{
+    "categories": [
+        {
+            "id": "1",
+            "name": "Сотовые операторы",
+            "url-name": "./../../images/payment/smartphone.png"
+        },
+        {
+            "id": "2",
+            "name": "Домашний телефон",
+            "url": "./../../images/payment/homephone.png"
+        },
+        {
+            "id": "3",
+            "name": "Интернет",
+            "url": "./../../images/payment/internet.png"
+        },
+        {
+            "id": "7",
+            "name": "Услуги",
+            "url": "./../../images/payment/services.png"
+        },
+        {
+            "id": "9",
+            "name": "Телевидение",
+            "url": "./../../images/payment/tv.png"
+        },
+        {
+            "id": "11",
+            "name": "Такси",
+            "url": "./../../images/payment/taxi.png"
+        },
+        {
+            "id": "12",
+            "name": "Зарубежные сервисы",
+            "url": "./../../images/payment/iservide.png"
+        },
+        {
+            "id": "4",
+            "name": "IP телефония",
+            "url": "./../../images/payment/ipphone.png"
+        },
+        {
+            "id": "6",
+            "name": "Электроэнергия",
+            "url": "./../../images/payment/bulb.png"
+        },
+        {
+            "id": "14",
+            "name": "Государственные услуги",
+            "url": "./../../images/payment/govermentservice.png"
+        },
+        {
+            "id": "5",
+            "name": "Природный Газ",
+            "url": "./../../images/payment/naturalgas.png"
+        },
+        {
+            "id": "19",
+            "name": "Банковские услуги",
+            "url": "./../../images/payment/bankingservices.png"
+        },
+        {
+            "id": "8",
+            "name": "МахсусТранс",
+            "url": "./../../images/payment/spetialtrans.png"
+        },
+        {
+            "id": "10",
+            "name": "Холодная вода",
+            "url": "./../../images/payment/coldwater.png"
+        },
+        {
+            "id": "15",
+            "name": "Благотворительность",
+            "url": "./../../images/payment/charity.png"
+        },
+        {
+            "id": "17",
+            "name": "Погашение кредитов",
+            "url": "./../../images/payment/creditpay.png"
+        }
+    ],
+    "size": "16"
+}

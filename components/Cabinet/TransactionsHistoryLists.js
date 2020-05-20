@@ -13,7 +13,6 @@ class TransactionsHistoryLists extends React.Component {
     }
 
     render() {
-        console.log(this.props.history)
         return (
             <div className="bg-light shadow-sm rounded py-4 mb-4">
                 <h3 className="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">All Transactions</h3>
@@ -52,7 +51,7 @@ class TransactionsHistoryLists extends React.Component {
                                             <span className="text-success" data-toggle="tooltip" data-original-title="Completed"><i className="fas fa-check-circle" /></span> 
                                         </div>
                                         <div className="col-3 col-sm-2 text-right text-4"> 
-                                            <span className="text-nowrap">{element.amount.toLocaleString().split(',').join(' ')}</span> <span className="text-2 text-uppercase">({element.card.currency.code})</span> 
+                                            <span className="text-nowrap">{(element.amount/100).toLocaleString().split(',').join(' ')}</span> <span className="text-2 text-uppercase">({element.card.currency.code})</span> 
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +82,7 @@ class TransactionsHistoryLists extends React.Component {
                             <div className="my-auto text-center">
                                 <div className="text-17 text-white my-3"><i className="fas fa-building" /></div>
                                 <h3 className="text-4 text-white font-weight-400 my-3">{element.paymentPurpose.displayName.toUpperCase()}</h3>
-                                <div className="text-8 font-weight-500 text-white my-4">{element.amount.toLocaleString().split(',').join(' ')}</div>
+                                <div className="text-8 font-weight-500 text-white my-4">{(element.amount/100).toLocaleString().split(',').join(' ')}</div>
                                 <p className="text-white">{element.transactionDate.split("-")[2].split("T")[0]} {this.handleMonth(element.transactionDate.split("-")[1])} {element.transactionDate.split("-")[0]}</p>
                             </div>
                             </div>
@@ -94,22 +93,22 @@ class TransactionsHistoryLists extends React.Component {
                             <hr />
                             <div className="px-3">
                                 <ul className="list-unstyled">
-                                <li className="mb-2">Payment Amount <span className="float-right text-3">{(element.amount*100/100.5).toLocaleString().split(',').join(' ')}</span></li>
-                                <li className="mb-2">Fee <span className="float-right text-3">{(element.amount - element.amount*100/100.5).toLocaleString().split(',').join(' ')}</span></li>
+                                <li className="mb-2">Payment Amount <span className="float-right text-3">{((element.amount/100)*100/100.5).toLocaleString().split(',').join(' ')}</span></li>
+                                <li className="mb-2">Fee <span className="float-right text-3">{((element.amount/100) - (element.amount/100)*100/100.5).toLocaleString().split(',').join(' ')}</span></li>
                                 </ul>
                                 <hr className="mb-2" />
-                                <p className="d-flex align-items-center font-weight-500 mb-4">Total Amount <span className="text-3 ml-auto">{(element.amount).toLocaleString().split(',').join(' ')}</span></p>
+                                <p className="d-flex align-items-center font-weight-500 mb-4">Total Amount <span className="text-3 ml-auto">{((element.amount/100)).toLocaleString().split(',').join(' ')}</span></p>
                                 <ul className="list-unstyled">
                                 <li className="font-weight-500">Paid By:</li>
-                                <li className="text-muted">{element.card.cardNumber}</li>
+                                <li className="text-muted">{element.card.cardNumber.split("")[0]}{element.card.cardNumber.split("")[1]}{element.card.cardNumber.split("")[2]}{element.card.cardNumber.split("")[3]} **** **** {element.card.cardNumber.split("")[12]}{element.card.cardNumber.split("")[13]}{element.card.cardNumber.split("")[14]}{element.card.cardNumber.split("")[15]}</li>
                                 </ul>
                                 <ul className="list-unstyled">
-                                <li className="font-weight-500">Transaction ID:</li>
-                                <li className="text-muted">{element.id}</li>
+                                <li className="font-weight-500">Recieved By:</li>
+                                <li className="text-muted">{element.properties[0].value.split("")[0]}{element.properties[0].value.split("")[1]}{element.properties[0].value.split("")[2]}{element.properties[0].value.split("")[3]} **** **** {element.properties[0].value.split("")[12]}{element.properties[0].value.split("")[13]}{element.properties[0].value.split("")[14]}{element.properties[0].value.split("")[15]}</li>
                                 </ul>
                                 <ul className="list-unstyled">
-                                <li className="font-weight-500">Description:</li>
-                                <li className="text-muted">{element.paymentPurpose.description}</li>
+                                <li className="font-weight-500">Reciever Name:</li>
+                                <li className="text-muted">{element.properties[2].value}</li>
                                 </ul>
                                 <ul className="list-unstyled">
                                 <li className="font-weight-500">Status:</li>

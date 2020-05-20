@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import Navbar from '../components/Cabinet/Navbar';
-import CabinetPayment from '../components/Cabinet/Payment';
-import Sideber from '../components/Cabinet/Sideber';
+import Navbar from '../components/Layouts/MainNavbar';
+import ProfilePayment from '../components/Layouts/ProfilePayment';
 
-class Payment extends Component {
+class CabinetPayment extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navbar />
-                <Sideber url={"payment"}/>
-                <CabinetPayment />
+                <Navbar url={"payment"} />
+                <ProfilePayment />
             </React.Fragment>
         );
     }
 }
 
-export default Payment;
+export default CabinetPayment;

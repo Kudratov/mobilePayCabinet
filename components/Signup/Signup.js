@@ -5,6 +5,8 @@ import Router from 'next/router';
 import axios from 'axios';
 import moment from 'moment';
 
+import "./../../assets/sass/stylesheet.scss";
+
 import {url} from './../../store/urls';
 import {addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
 

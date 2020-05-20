@@ -1,165 +1,38 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 
+import Categories from './../../store/categories.json';
+
 class CabinetPayment extends Component {
 
     render() {
-
         return (
-                <div className="container-fluid pt-4">
-                    <div className="row">
-                        <div className="col-12 col-sm-6 col-lg-2">
-                            <div className="single-project">
-                                <div className="project-image">
-                                    <img src={require('../../images/work-img1.jpg')} alt="work" />
+                <div>
+                    <div className="bg-light shadow-sm rounded p-4 mb-4">
+                    <h3 className="text-5 font-weight-400 mb-4">Payments <span className="text-muted text-4">(aviable merchants)</span></h3>
+                    <div>
+                                <div className="brands-grid separator-border bg-white">
+                                <div className="row align-items-center">
 
-                                    <Link href="#">
-                                        <a 
-                                            className="popup-btn"
-                                        >
-                                        </a>
-                                    </Link>
+                                {Categories.categories && 
+                                    <>
+                                    {Categories.categories.map((element, i) => {
+                                        return (
+                                            <>
+
+                                    <div className="col-md-4 col-sm-6 col-lg-3 col-6 text-center logo-src-payment"><Link><a href><img className="img-fluid logo-img-payment" src={element.url ? element.url : "./../../images/payment/smartphone.png"} alt="Brands" /><span className="payment-name">{element.name}</span></a></Link></div>
+                                
+
+
+                            </>
+                            )
+                            })}                        
+                            </>
+                            }
+
                                 </div>
-
-                                <div className="project-content">
-                                    <span>Digital</span>
                                 </div>
-                            </div>
-                        </div>
-                        
-
-                        <div className="col-12 col-sm-6 col-lg-2">
-                            <div className="single-project">
-                                <div className="project-image">
-                                    <img src={require('../../images/work-img2.jpg')} alt="work" />
-
-                                    <Link href="#">
-                                        <a 
-                                            className="popup-btn"
-                                        >
-                                        </a>
-                                    </Link>
-                                </div>
-
-                                <div className="project-content">
-                                    <span>Digital</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-2">
-                            <div className="single-project">
-                                <div className="project-image">
-                                    <img src={require('../../images/work-img3.jpg')} alt="work" />
-
-                                    <Link href="#">
-                                        <a 
-                                            className="popup-btn"
-                                        >
-                                        </a>
-                                    </Link>
-                                </div>
-
-                                <div className="project-content">
-                                    <span>Digital</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-2">
-                            <div className="single-project">
-                                <div className="project-image">
-                                    <img src={require('../../images/work-img4.jpg')} alt="work" />
-
-                                    <Link href="#">
-                                        <a 
-                                            className="popup-btn"
-                                        >
-                                        </a>
-                                    </Link>
-                                </div>
-
-                                <div className="project-content">
-                                    <span>Digital</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-2">
-                            <div className="single-project">
-                                <div className="project-image">
-                                    <img src={require('../../images/work-img5.jpg')} alt="work" />
-
-                                    <Link href="#">
-                                        <a 
-                                            className="popup-btn"
-                                        >
-                                        </a>
-                                    </Link>
-                                </div>
-
-                                <div className="project-content">
-                                    <span>Digital</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-2">
-                            <div className="single-project">
-                                <div className="project-image">
-                                    <img src={require('../../images/work-img6.jpg')} alt="work" />
-
-                                    <Link href="#">
-                                        <a 
-                                            className="popup-btn"
-                                        >
-                                        </a>
-                                    </Link>
-                                </div>
-
-                                <div className="project-content">
-                                    <span>Digital</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-2">
-                            <div className="single-project">
-                                <div className="project-image">
-                                    <img src={require('../../images/work-img1.jpg')} alt="work" />
-
-                                    <Link href="#">
-                                        <a 
-                                            className="popup-btn"
-                                        >
-                                        </a>
-                                    </Link>
-                                </div>
-
-                                <div className="project-content">
-                                    <span>Digital</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-2">
-                            <div className="single-project">
-                                <div className="project-image">
-                                    <img src={require('../../images/work-img2.jpg')} alt="work" />
-
-                                    <Link href="#">
-                                        <a 
-                                            className="popup-btn"
-                                        >
-                                        </a>
-                                    </Link>
-                                </div>
-
-                                <div className="project-content">
-                                    <span>Digital</span>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                     </div>
                 </div>
         );

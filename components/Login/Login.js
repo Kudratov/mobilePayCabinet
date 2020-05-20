@@ -6,6 +6,8 @@ import axios from 'axios';
 import moment from 'moment';
 import Toast from 'light-toast';
 
+import "./../../assets/sass/stylesheet.scss";
+
 import {url} from './../../store/urls';
 import {addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
 

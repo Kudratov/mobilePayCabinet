@@ -62,6 +62,7 @@ class MoneySend extends React.Component {
         let amount = e.target.value;
         let tag = document.getElementById("send-money-btn");        
         if(this.state.cardID && this.state.receiverFullName && amount.length >= 4){
+            console.log(this.state.amount)
             tag.classList.remove("disactive");
         } else {
             tag.classList.add("disactive");
@@ -89,6 +90,7 @@ class MoneySend extends React.Component {
             receiverCardNumberExpiresOn: this.state.receiverCardNumberExpiresOn,
             receiverFullName: this.state.receiverFullName
         }
+        console.log(this.state.amount)
         const headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',

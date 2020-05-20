@@ -56,7 +56,7 @@ class MainNavbar extends React.Component {
                             <ul className="navbar-nav mr-auto">
                                 <li className={classForMain}><Link href="/cabinet-main"><a>Dashboard</a></Link></li>
                                 <li className={classForHistory}><Link href="/cabinet-history">Transactions</Link></li>
-                                <li className={classForPayment}><Link href="/cabinet-payment-one">Payment</Link></li>
+                                <li className={classForPayment}><Link href="/cabinet-payment">Payment</Link></li>
                                 <li className={classForTransfer}><Link href="/cabinet-send">Send/Request</Link></li>
                                 <li className={classForCards}><Link href="/cabinet-cards">Cards</Link></li>
                             </ul>
