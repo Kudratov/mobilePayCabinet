@@ -1,4 +1,7 @@
 import React from 'react';
+import moment from "moment";
+import {connect} from 'react-redux';
+import axios from 'axios';
 
 class TransactionsHistoryLists extends React.Component {
 
@@ -31,9 +34,9 @@ class TransactionsHistoryLists extends React.Component {
                     =============================== */}
                 <div className="transaction-list">
 
-                {this.props.history && 
+                {this.props.transactionHistory && 
                         <>
-                        {this.props.history.map((element, i) => {
+                        {this.props.transactionHistory.map((element, i) => {
                             return (
                                 <>
 
@@ -67,13 +70,15 @@ class TransactionsHistoryLists extends React.Component {
                 {/* Transaction Item Details Modal
                     =========================================== */}
 
-        {this.props.history && 
+        {this.props.transactionHistory && 
             <>
-            {this.props.history.map((element, i) => {
+            {this.props.transactionHistory.map((element, i) => {                
                 return (
-                    <>
+                <>
 
-                <div id={"text-number-" + i} className="modal fade" role="dialog" aria-hidden="true">
+                    {element.debitCreditIndicator == 'undefined' ? 
+                        
+                        <div id={"text-number-" + i} className="modal fade" role="dialog" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered transaction-details" role="document">
                     <div className="modal-content">
                         <div className="modal-body">
@@ -102,14 +107,14 @@ class TransactionsHistoryLists extends React.Component {
                                 <li className="font-weight-500">Paid By:</li>
                                 <li className="text-muted">{element.card.cardNumber.split("")[0]}{element.card.cardNumber.split("")[1]}{element.card.cardNumber.split("")[2]}{element.card.cardNumber.split("")[3]} **** **** {element.card.cardNumber.split("")[12]}{element.card.cardNumber.split("")[13]}{element.card.cardNumber.split("")[14]}{element.card.cardNumber.split("")[15]}</li>
                                 </ul>
-                                <ul className="list-unstyled">
+                                {/* <ul className="list-unstyled">
                                 <li className="font-weight-500">Recieved By:</li>
-                                <li className="text-muted">{element.properties[0].value.split("")[0]}{element.properties[0].value.split("")[1]}{element.properties[0].value.split("")[2]}{element.properties[0].value.split("")[3]} **** **** {element.properties[0].value.split("")[12]}{element.properties[0].value.split("")[13]}{element.properties[0].value.split("")[14]}{element.properties[0].value.split("")[15]}</li>
+                                <li className="text-muted">{element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_card_number"})].value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_card_number"})].value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}</li>
                                 </ul>
                                 <ul className="list-unstyled">
                                 <li className="font-weight-500">Reciever Name:</li>
-                                <li className="text-muted">{element.properties[2].value}</li>
-                                </ul>
+                                <li className="text-muted">{element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_name"})].value}</li>
+                                </ul> */}
                                 <ul className="list-unstyled">
                                 <li className="font-weight-500">Status:</li>
                                 <li className="text-muted">Completed</li>
@@ -121,6 +126,8 @@ class TransactionsHistoryLists extends React.Component {
                     </div>
                     </div>
                 </div>
+
+                     : ''}
 
                 </>
                                 )
@@ -146,4 +153,14 @@ class TransactionsHistoryLists extends React.Component {
     }
 }
 
-export default TransactionsHistoryLists
+const mapStateToProps = (state)=>{
+    return {
+        language: state.language,
+        token: state.authToken,
+        transactionHCardIDs: state.transactionHCardIDs,
+        currentPage: state.transactionInfo.split("-")[0],
+        transactionHistory: state.transactionHistory
+    }
+}
+
+export default connect(mapStateToProps)(TransactionsHistoryLists);

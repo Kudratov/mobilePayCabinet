@@ -3,82 +3,82 @@
         {
             "id": "1",
             "name": "Сотовые операторы",
-            "url-name": "./../../images/payment/smartphone.png"
+            "url-name": "./../../images/payment/pay_mobile.png"
         },
         {
             "id": "2",
             "name": "Домашний телефон",
-            "url": "./../../images/payment/homephone.png"
+            "url": "./../../images/payment/pay_tel.png"
         },
         {
             "id": "3",
             "name": "Интернет",
-            "url": "./../../images/payment/internet.png"
+            "url": "./../../images/payment/pay_net.png"
         },
         {
             "id": "7",
             "name": "Услуги",
-            "url": "./../../images/payment/services.png"
+            "url": "./../../images/payment/pay_service.png"
         },
         {
             "id": "9",
             "name": "Телевидение",
-            "url": "./../../images/payment/tv.png"
+            "url": "./../../images/payment/pay_tv.png"
         },
         {
             "id": "11",
             "name": "Такси",
-            "url": "./../../images/payment/taxi.png"
+            "url": "./../../images/payment/pay_taxi.png"
         },
         {
             "id": "12",
             "name": "Зарубежные сервисы",
-            "url": "./../../images/payment/iservide.png"
+            "url": "./../../images/payment/pay_zar.png"
         },
         {
             "id": "4",
             "name": "IP телефония",
-            "url": "./../../images/payment/ipphone.png"
+            "url": "./../../images/payment/pay_ip.png"
         },
         {
             "id": "6",
             "name": "Электроэнергия",
-            "url": "./../../images/payment/bulb.png"
+            "url": "./../../images/payment/pay_insurance.png"
         },
         {
             "id": "14",
             "name": "Государственные услуги",
-            "url": "./../../images/payment/govermentservice.png"
+            "url": "./../../images/payment/pay_gos.png"
         },
         {
             "id": "5",
             "name": "Природный Газ",
-            "url": "./../../images/payment/naturalgas.png"
+            "url": "./../../images/payment/pay_gaz.png"
         },
         {
             "id": "19",
             "name": "Банковские услуги",
-            "url": "./../../images/payment/bankingservices.png"
+            "url": "./../../images/payment/pay_gaz.png"
         },
         {
             "id": "8",
             "name": "МахсусТранс",
-            "url": "./../../images/payment/spetialtrans.png"
+            "url": "./../../images/payment/pay_service.png"
         },
         {
             "id": "10",
             "name": "Холодная вода",
-            "url": "./../../images/payment/coldwater.png"
+            "url": "./../../images/payment/pay_voda.png"
         },
         {
             "id": "15",
             "name": "Благотворительность",
-            "url": "./../../images/payment/charity.png"
+            "url": "./../../images/payment/pay_charity.png"
         },
         {
             "id": "17",
             "name": "Погашение кредитов",
-            "url": "./../../images/payment/creditpay.png"
+            "url": "./../../images/payment/pay_credit.png"
         }
     ],
     "size": "16"

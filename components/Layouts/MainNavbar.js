@@ -43,7 +43,7 @@ class MainNavbar extends React.Component {
                         <div className="header-column justify-content-start"> 
                         {/* Logo
                     ============================= */}
-                        <div className="logo"> <a className="d-flex" href="index.html" title="Payyed - HTML Template"><img src="./../../images/logo.png" alt="Payyed" /></a> </div>
+                        <div className="logo"> <Link href="/"><a className="d-flex" title="mobilePay"><img className="logo-vinn" src="./../../images/logo.png" alt="vinn" /></a></Link> </div>
                         {/* Logo end */} 
                         {/* Collapse Button
                     ============================== */}

@@ -8,7 +8,10 @@ import {
     ADD_RECIEVER_INFO,
     ADD_TRANSFER_AMOUNT,
     ADD_TRANSACTIONS_HISTORY,
-    ADD_CARD_ID_TO_TRANSFER
+    ADD_CARD_ID_TO_TRANSFER,
+    ADD_FAVORITE_TRANSACTIONS,
+    ADD_TRANSACTION_INFO,
+    ADD_TRANSCTION_CARDIDS
 } from './action-types/cart-actions'
 
 // Change language
@@ -47,10 +50,31 @@ export const addCard = (cards) => {
     }
 }
 
-export const addHistory = (history) => {
+export const addTransactionCardIDs = (cardIDs) => {
+    return {
+        type: ADD_TRANSCTION_CARDIDS,
+        cardIDs
+    }
+}
+
+export const addTransactionHistory = (history) => {
     return {
         type: ADD_TRANSACTIONS_HISTORY,
         history
+    }
+}
+
+export const addFavoriteTransaction = (fTransaction) => {
+    return {
+        type: ADD_FAVORITE_TRANSACTIONS,
+        fTransaction
+    }
+}
+
+export const addTransactionInfo = (info) => {
+    return {
+        type: ADD_TRANSACTION_INFO,
+        info
     }
 }
 

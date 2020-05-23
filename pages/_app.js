@@ -96,7 +96,7 @@ export default withRedux(initStore)(
                             type: 'website',
                             locale: 'en_IE',
                             url: 'https://mobilePay.uz/',
-                            site_name: 'Mojosa - React Next Landing Page Templates',
+                            site_name: 'mobilePayment',
                         }}
                     />
                     <Preloader>

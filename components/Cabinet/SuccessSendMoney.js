@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import {connect} from 'react-redux';    
 import Router from 'next/router';
-import axios from 'axios';
+import Toast from 'light-toast';
 
 import {url} from './../../store/urls';
 
@@ -15,16 +15,44 @@ class SuccessSendMoney extends React.Component {
             cardHolder: ''
         }
         this.goToMoneySend = this.goToMoneySend.bind(this);
+        this.handleSaveTransaction = this.handleSaveTransaction.bind(this);
     }
 
     componentDidMount(){
-        if(!this.props.recieverInfo && this.props.cardId && this.props.transferAmount){
+        if(this.props.recieverInfo.length === 0 && this.props.transferId.length === 0){
             Router.push("/cabinet-send")
         }
     }
 
     goToMoneySend() {
         Router.push("/cabinet-send");
+    }
+
+    handleSaveTransaction () {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            Authorization: `Bearer ${this.props.token}`
+        }
+        
+        let __url = `${url}transactions-api/v1.0/favouritetransactions/${this.props.transferId}/`;
+        fetch(__url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                Authorization: `Bearer ${this.props.token}`
+            }
+        })
+            .then((res) => {
+                if(res.status === 201){
+                    Toast.success("Saved", 3000);
+                    Router.push("/cabinet-main");
+                }
+            })
+            .catch((err) => {
+                Router.push("/cabinet-main");
+            })
     }
     
     render() {
@@ -38,13 +66,13 @@ class SuccessSendMoney extends React.Component {
                 ============================================= */}
                     <div className="bg-light shadow-sm rounded p-3 p-sm-4 mb-4">
                         <div className="text-center my-5">
-                        <p className="text-center text-success text-20 line-height-07"><i className="fas fa-check-circle" /></p>
-                        <p className="text-center text-success text-8 line-height-07">Success!</p>
+                        <p className="text-center brand-color text-20 line-height-07"><i className="fas fa-check-circle" /></p>
+                        <p className="text-center brand-color text-8 line-height-07">Success!</p>
                         <p className="text-center text-4">Transactions Complete</p>
                         </div>
-                        <p className="text-center text-3 mb-4">You've Succesfully sent <span className="text-4 font-weight-500">{this.props.transferAmount} UZS</span> to <span className="font-weight-500">{this.props.recieverInfo.split('-')[0].replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim()}</span>, See transaction details under <a href="#">Activity</a>.</p>
+                        <p className="text-center text-3 mb-4">You've Succesfully sent <span className="text-4 font-weight-500">{(Number(this.props.recieverInfo.split('-')[4])).toLocaleString().split(',').join(' ')} UZS</span> to <span className="font-weight-500">{this.props.recieverInfo.split('-')[0].replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {this.props.recieverInfo.split('-')[0].replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}</span>, See transaction details under <Link href="/cabinet-history"><a>Activity</a></Link>.</p>
                         <a className="btn btn-primary btn-block text-white card-add-f-btn" onClick={this.goToMoneySend}>Send Money Again</a>
-                        <button className="btn btn-link btn-block"><i className="fas fa-print" /> Print</button> 
+                        <a className="btn btn-link btn-block" onClick={this.handleSaveTransaction} ><i className="fas fa-save" /> Save</a> 
                     </div>
                     </div>
                 </div>
@@ -58,9 +86,8 @@ const mapStateToProps = (state)=>{
     return {
         language: state.language,
         token: state.authToken,
-        transferAmount: state.transferAmount,
         recieverInfo: state.recieverInfo,
-        cardId: state.cardIdToTransfer
+        transferId: state.cardIdToTransfer
     }
 }
 

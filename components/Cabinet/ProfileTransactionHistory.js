@@ -2,12 +2,12 @@ import React from 'react';
 import { DateRangePicker, isInclusivelyBeforeDay } from 'react-dates';
 import moment from "moment";
 import {connect} from 'react-redux';
-import Router from 'next/router';
+import Cookie from 'js-cookie';
 import axios from 'axios';
 
 import TransactionsHistoryLists from './TransactionsHistoryLists';
 
-import {addHistory} from './../../store/actions/cartActions';
+import {addTransactionHistory, addTransactionInfo, addTransactionCardIDs} from './../../store/actions/cartActions';
 import {url} from './../../store/urls';
 
 import 'react-dates/initialize';
@@ -31,37 +31,37 @@ class ProfileTransactionHistory extends React.Component {
         }
     }
 
-    componentDidMount(){
-        const headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            Authorization: `Bearer ${this.props.token}`
-        }
+    // componentDidMount(){
+    //     const headers = {
+    //         'Content-Type': 'application/json',
+    //         'Accept': 'application/json',
+    //         Authorization: `Bearer ${Cookie.get('authtoken')}`
+    //     }
 
-        let _urlTran = `${url}transactions-api/v1.0/transactions`;
+    //     let _urlTran = `${url}transactions-api/v1.0/transactions`;
 
-        let data = {
-            from: this.state.realStartDate.split("-")[0] + `-` + this.state.realStartDate.split("-")[2] + `-` + this.state.realStartDate.split("-")[1],
-            to: this.state.realEndDate.split("-")[0] + `-` + this.state.realEndDate.split("-")[2] + `-` + this.state.realEndDate.split("-")[1],
-            pageNumber: this.state.pageNumber,
-            pageSize: this.state.pageSize,
-            cardIds: this.state.cardIds
-        }
+    //     let data = {
+    //         from: this.state.realStartDate.split("-")[0] + `-` + this.state.realStartDate.split("-")[2] + `-` + this.state.realStartDate.split("-")[1],
+    //         to: this.state.realEndDate.split("-")[0] + `-` + this.state.realEndDate.split("-")[2] + `-` + this.state.realEndDate.split("-")[1],
+    //         pageNumber: this.props.currentPage,
+    //         pageSize: this.state.pageSize,
+    //         cardIds: this.state.cardIds
+    //     }
         
-        this.state.cardIds.length = 0;
-        this.props.cards.map((element) => {
-            this.state.cardIds.push(element.id);
-        })
-        axios.post(`${_urlTran}`, JSON.stringify(data), {headers: headers})
-            .then((response) => {
-                this.setState({transactionHistory: response.data.transactions.sort(function(a, b){return new Date(b.transactionDate) - new Date(a.transactionDate)})});
-                this.setState({currentPageNumber: response.data.currentPage});
-                this.setState({currentPageSize: response.data.pageSize});
-            })
-            .catch((error) => {
+    //     this.state.cardIds.length = 0;
+    //     this.props.cards.map((element) => {
+    //         this.state.cardIds.push(element.id);
+    //     })
+    //     axios.post(`${_urlTran}`, JSON.stringify(data), {headers: headers})
+    //         .then((response) => {
+    //             this.props.dispatch(addTransactionCardIDs(data.cardIds))
+    //             this.props.dispatch(addTransactionInfo(`${response.data.currentPage}-${Math.ceil(response.data.totalCount/response.data.currentPage)}-${response.data.hasMore}`));
+    //             this.props.dispatch(addTransactionHistory(response.data.transactions.sort(function(a, b){return new Date(b.transactionDate) - new Date(a.transactionDate)})));
+    //         })
+    //         .catch((error) => {
                 
-            })
-    }
+    //         })
+    // }
 
     render() {        
         return (
@@ -134,7 +134,7 @@ class ProfileTransactionHistory extends React.Component {
                     </form>
                 </div>
                 </div>
-                <TransactionsHistoryLists history={this.state.transactionHistory} currentPage={this.state.currentPageNumber} currentPageSize={this.state.currentPageSize}/>
+                <TransactionsHistoryLists />
             </div>
         );
     }
@@ -146,7 +146,8 @@ const mapStateToProps = (state)=>{
         token: state.authToken,
         pNumber: state.phoneNumber,
         cardCred: state.cardCred,
-        cards: state.cards
+        cards: state.cards,
+        currentPage: state.transactionInfo.split("-")[0]
     }
 }
 

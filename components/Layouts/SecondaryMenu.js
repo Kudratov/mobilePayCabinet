@@ -24,7 +24,6 @@ class SecondaryMenu extends React.Component {
                 this.props.dispatch(addCard(response.data));
             })
             .catch((error) => {
-                    localStorage.removeItem('user-credentials');
                     Router.push('/');
             })
         } else if(!this.props.token && !this.props.pNumber) {
@@ -58,8 +57,8 @@ class SecondaryMenu extends React.Component {
                 <div className="bg-primary">
                     <div className="container d-flex justify-content-center">
                     <ul className="nav secondary-nav">
-                        <li className="nav-item"> <a className={`nav-link ${send}`} href="/cabinet-sned">Send</a></li>
-                        <li className="nav-item"> <a className={`nav-link ${request}`} href="/cabinet-request">Request</a></li>
+                        <li className="nav-item"> <a className={`nav-link ${send} card-add-f-btn`} href="/cabinet-sned">Send</a></li>
+                        <li className="nav-item"> <a className={`nav-link ${request} card-add-f-btn`} href="/cabinet-request">Request</a></li>
                     </ul>
                     </div>
                 </div>

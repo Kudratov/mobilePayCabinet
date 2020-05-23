@@ -12,7 +12,10 @@ import {
     ADD_RECIEVER_INFO,
     ADD_TRANSFER_AMOUNT,
     ADD_TRANSACTIONS_HISTORY,
-    ADD_CARD_ID_TO_TRANSFER
+    ADD_CARD_ID_TO_TRANSFER,
+    ADD_FAVORITE_TRANSACTIONS,
+    ADD_TRANSACTION_INFO,
+    ADD_TRANSCTION_CARDIDS
 } from '../actions/action-types/cart-actions'
 
 export const initState = {
@@ -22,8 +25,11 @@ export const initState = {
     authToken: '',
     cardCred: '',
     cards: [],
+    transactionHCardIDs: [],
     transactionHistory: [],
+    favoriteTransactions: [],
     recieverInfo: '',
+    transactionInfo: '1-x-x',
     transferAmount: '',
     cardIdToTransfer: ''
 }
@@ -71,6 +77,14 @@ export const cartReducer= (state = initState, action) => {
         }
     }
 
+    if(action.type === ADD_TRANSACTION_INFO){
+        let __info = action.info;
+        return {
+            ...state,
+            transactionInfo: __info
+        }
+    }
+
     if(action.type === ADD_CARD){
         let __cards = action.cards;
         state.cards.length = 0;
@@ -80,12 +94,30 @@ export const cartReducer= (state = initState, action) => {
         }
     }
 
+    if(action.type === ADD_TRANSCTION_CARDIDS){
+        let __tCardIDs = action.cardIDs;
+        state.transactionHCardIDs.length = 0;
+        return {
+            ...state,
+            transactionHCardIDs: state.transactionHCardIDs.concat(__tCardIDs)
+        }
+    }
+
     if(action.type === ADD_TRANSACTIONS_HISTORY){
         let __tHistory = action.history;
         state.transactionHistory.length = 0;
         return {
             ...state,
             transactionHistory: state.transactionHistory.concat(__tHistory)
+        }
+    }
+
+    if(action.type === ADD_FAVORITE_TRANSACTIONS){
+        let __fTransaction = action.fTransaction;
+        state.favoriteTransactions.length = 0;
+        return {
+            ...state,
+            favoriteTransactions: state.favoriteTransactions.concat(__fTransaction)
         }
     }
 

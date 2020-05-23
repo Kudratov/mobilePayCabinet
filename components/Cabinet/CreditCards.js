@@ -8,9 +8,6 @@ import Link from 'next/link';
 import {addCardCredentails, addCard, addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
 import {url} from './../../store/urls';
 
-import './../../assets/vendor/font-awesome/css/all.min.css'; 
-import './../../assets/css/css/stylesheet.css';
-
 class CreditCards extends React.Component {
     constructor (props) {
         super(props);
@@ -298,7 +295,7 @@ class CreditCards extends React.Component {
                                                 </p>
                                                 <p className="d-flex align-items-center">
                                                 <span className="text-4 opacity-9 text-white">{element.balance.toLocaleString().split(',').join(' ')} {element.currencyCode}</span> {element.isMainCard ? <span className="bg-light text-0 text-body font-weight-500 rounded-pill d-inline-block px-2 line-height-4 opacity-8 ml-auto">Primary</span> : ''} </p>
-                                                <p className="d-flex align-items-center m-0"> <span className="text-uppercase font-weight-500 text-white">{element.name}</span> <img className="ml-auto" src="./../../images/visa.png" alt="visa" title /> </p>
+                                                <p className="d-flex align-items-center m-0"> <span className="text-uppercase font-weight-500 text-white">{element.name}</span> <img className="ml-auto resize-logo" src="./../../images/visa.png" alt="visa" title /> </p>
                                                 <div className="account-card-overlay rounded"> <a onClick={e => this.handleCardIsMain(element.isMainCard, element.name)} data-target={`#edit-card-details-${element.id}`} data-toggle="modal" className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-edit" /></span>Edit</a> <a href="#" onClick={e=>this.handleDeleteCard(e, `${element.id}`)} className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-minus-circle" /></span>Delete</a> </div>
                                             </div>
                                         </div>

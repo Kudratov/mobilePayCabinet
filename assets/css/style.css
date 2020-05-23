@@ -36,6 +36,20 @@
   border: .5px solid white;
 }
 
-.logo-img-payment{
-  height: 9rem;
+.user-pic {
+  height: 5rem;
+}
+
+.logo-vinn {
+  height: 4rem;
+  padding-right: 4rem;
+}
+
+.logo-winn {
+  height: 30px;
+  width: 90px;
+}
+
+.brand-color{
+  color: #4f4693;
 }
