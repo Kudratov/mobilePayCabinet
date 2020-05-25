@@ -20,7 +20,7 @@ class CabinetPayment extends Component {
                                         return (
                                             <>
 
-                                    <div className="col-md-4 col-sm-6 col-lg-3 col-6 text-center logo-src-payment"><Link><a href><img className="img-fluid logo-img-payment" src={element.url ? element.url : "./../../images/payment/pay_mobile.png"} alt="Brands" /><br/><span className="payment-name">{element.name}</span></a></Link></div>
+                                    <div key={i} className="col-md-4 col-sm-6 col-lg-3 col-6 text-center logo-src-payment"><Link><a href><img className="img-fluid logo-img-payment" src={element.url ? element.url : "./../../images/payment/pay_mobile.png"} alt="Brands" /><br/><span className="payment-name">{element.name}</span></a></Link></div>
                                 
 
 

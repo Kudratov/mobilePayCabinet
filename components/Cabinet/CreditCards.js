@@ -287,7 +287,7 @@ class CreditCards extends React.Component {
                                 <>
 
                                     {element.confirmedByOwner &&
-                                        <div className="col-12 col-sm-6 col-lg-4">
+                                        <div key={element.id} className="col-12 col-sm-6 col-lg-4">
                                             <div className="account-card account-card-primary text-white rounded p-3 mb-4 mb-lg-0">                        
                                                 <p className="d-flex align-items-center">
                                                     <span className="text-2 opacity-9 text-white">{element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}</span>
@@ -295,7 +295,7 @@ class CreditCards extends React.Component {
                                                 </p>
                                                 <p className="d-flex align-items-center">
                                                 <span className="text-4 opacity-9 text-white">{element.balance.toLocaleString().split(',').join(' ')} {element.currencyCode}</span> {element.isMainCard ? <span className="bg-light text-0 text-body font-weight-500 rounded-pill d-inline-block px-2 line-height-4 opacity-8 ml-auto">Primary</span> : ''} </p>
-                                                <p className="d-flex align-items-center m-0"> <span className="text-uppercase font-weight-500 text-white">{element.name}</span> <img className="ml-auto resize-logo" src="./../../images/visa.png" alt="visa" title /> </p>
+                                                <p className="d-flex align-items-center m-0"> <span className="text-uppercase font-weight-500 text-white">{element.name}</span> <img className="ml-auto resize-logo" src="./../../images/visa.png" alt="visa"  /> </p>
                                                 <div className="account-card-overlay rounded"> <a onClick={e => this.handleCardIsMain(element.isMainCard, element.name)} data-target={`#edit-card-details-${element.id}`} data-toggle="modal" className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-edit" /></span>Edit</a> <a href="#" onClick={e=>this.handleDeleteCard(e, `${element.id}`)} className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-minus-circle" /></span>Delete</a> </div>
                                             </div>
                                         </div>
@@ -316,13 +316,13 @@ class CreditCards extends React.Component {
                                 <>
 
                                     {element.confirmedByOwner === false &&
-                                        <div className="col-12 col-sm-6 col-lg-4">
+                                        <div key={element.id} className="col-12 col-sm-6 col-lg-4">
                                             <div className="account-card text-white rounded p-3 mb-4 mb-lg-0">
                                                 <p className="text-4">{element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}</p>
                                                 <p className="d-flex align-items-center"> <span className="account-card-expire text-uppercase d-inline-block opacity-6 mr-2">Valid<br />
                                                     thru<br />
                                                 </span> <span className="text-2 opacity-9">{element.expiresOn ? element.expiresOn.substring(0,2) + "/" + element.expiresOn.substring(2) : ''}</span> </p>
-                                                <p className="d-flex align-items-center m-0"> <span className="text-uppercase font-weight-500">{element.name}</span> <img className="ml-auto" src="./../../images/mastercard.png" alt="mastercard" title /> </p>
+                                                <p className="d-flex align-items-center m-0"> <span className="text-uppercase font-weight-500">{element.name}</span> <img className="ml-auto" src="./../../images/mastercard.png" alt="mastercard"  /> </p>
                                                 <div className="account-card-overlay rounded"> <a href="#" data-target="#edit-card-details" onClick={e => this.handleActivateCard(element.id, element.ownerPhoneNumber, element.cardNumber)} data-toggle="modal" className="text-light btn-link mx-2"><span className="mr-1"><i className="fas fa-chevron-up" /></span>Activate</a> <a href="#" className="text-light btn-link mx-2" onClick={e => this.handleDeleteCard(e, element.id)}><span className="mr-1"><i className="fas fa-minus-circle" /></span>Delete</a> </div>
                                             </div>
                                         </div>
@@ -350,7 +350,7 @@ class CreditCards extends React.Component {
                                 <>
 
 
-                                    <div id={`edit-card-details-${element.id}`} className="modal fade" role="dialog" aria-hidden="true">
+                                    <div key={element.id} id={`edit-card-details-${element.id}`} className="modal fade" role="dialog" aria-hidden="true">
                                     <div className="modal-dialog modal-dialog-centered" role="document">
                                         <div className="modal-content">
                                         <div className="modal-header">
@@ -362,7 +362,7 @@ class CreditCards extends React.Component {
                                             <div className="form-group">
                                                 <label htmlFor="edircardNumber">Card Number</label>
                                                 <div className="input-group">
-                                                <div className="input-group-prepend"> <span className="input-group-text"><img className="ml-auto" src="./../../images/visa.png" alt="visa" title /></span> </div>
+                                                <div className="input-group-prepend"> <span className="input-group-text"><img className="ml-auto" src="./../../images/visa.png" alt="visa" /></span> </div>
                                                 <input type="text" className="form-control" data-bv-field="edircardNumber" id="edircardNumber" disabled defaultValue={`${element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** ${element.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}`} placeholder="Card Number" />
                                                 </div>
                                             </div>

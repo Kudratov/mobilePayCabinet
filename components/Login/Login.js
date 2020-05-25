@@ -11,6 +11,8 @@ import "./../../assets/sass/stylesheet.scss";
 import {url} from './../../store/urls';
 import {addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
 
+import Languages from './../../store/languages.json';
+
 class Login extends Component {
     constructor (props) {
         super(props);
@@ -104,28 +106,28 @@ class Login extends Component {
                     <div className="container my-4">
                         <div className="row">
                         <div className="col-11 col-lg-9 col-xl-8 mx-auto setting-shadow">
-                            <h3 className="font-weight-400 mb-4">Log In</h3>
+                            <h3 className="font-weight-400 mb-4">{Languages.page.login.Уз_уз.t3}</h3>
                             <form id="loginForm" method="post">
                             <div className="form-group">
-                                <label htmlFor="emailAddress">Phone Number</label>
+                                <label htmlFor="emailAddress">{Languages.page.login.Уз_уз.t4}</label>
                                 <input type="text" className="form-control" id="emailAddress" required onChange={this.checkPhoneNumberExists} maxLength="17" value={`+${this.state.phoneNumber}`} />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="loginPassword">Password</label>
+                                <label htmlFor="loginPassword">{Languages.page.login.Уз_уз.t5}</label>
                                 <input type="password" className="form-control" id="loginPassword" onChange={this.handlePasswordLogin} required placeholder="Enter Password" />
                             </div>
                             <div className="row">
                                 <div className="col-sm">
                                 <div className="form-check custom-control custom-checkbox">
                                     <input id="remember-me" name="remember" className="custom-control-input" type="checkbox" />
-                                    <label className="custom-control-label" htmlFor="remember-me">Remember Me</label>
+                                    <label className="custom-control-label" htmlFor="remember-me">{Languages.page.login.Уз_уз.t6}</label>
                                 </div>
                                 </div>
-                                <div className="col-sm text-right"><a className="btn-link" href="#">Forgot Password ?</a></div>
+                                <div className="col-sm text-right"><a className="btn-link" href="#">{Languages.page.login.Уз_уз.t7}</a></div>
                             </div>
-                            <button className="btn btn-primary btn-block my-4" onClick={(e) => this.handleLogin(e)} type="submit">Login</button>
+                            <button className="btn btn-primary btn-block my-4" onClick={(e) => this.handleLogin(e)} type="submit">{Languages.page.login.Уз_уз.t8}</button>
                             </form>
-                            <p className="text-3 text-center text-muted">Don't have an account? <Link href="/signup"><a className="btn-link">Sign Up</a></Link></p>
+                            <p className="text-3 text-center text-muted">{Languages.page.login.Уз_уз.t9} <Link href="/signup"><a className="btn-link">{Languages.page.login.Уз_уз.t10}</a></Link></p>
                         </div>
                         </div>
                     </div>

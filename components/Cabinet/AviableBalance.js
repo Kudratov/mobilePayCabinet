@@ -60,7 +60,7 @@ class AviableBalance extends React.Component {
                     axios.post(`${_urlTran}`, JSON.stringify(data), {headers: headers})
                         .then((response) => {
                             this.props.dispatch(addTransactionCardIDs(data.cardIds))
-                            this.props.dispatch(addTransactionInfo(`${response.data.currentPage}-${Math.ceil(response.data.totalCount/response.data.currentPage)}-${response.data.hasMore}`));
+                            this.props.dispatch(addTransactionInfo(`${response.data.currentPage}-${Math.ceil(response.data.totalCount/response.data.pageSize)}-${response.data.hasMore}`));
                             this.props.dispatch(addTransactionHistory(response.data.transactions.sort(function(a, b){return new Date(b.transactionDate) - new Date(a.transactionDate)})));
                         })
                         .catch((error) => {

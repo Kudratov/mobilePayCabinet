@@ -19,7 +19,7 @@ import {
 } from '../actions/action-types/cart-actions'
 
 export const initState = {
-    language: 'Русский',
+    language: 'Уз_уз',
     phoneNumber: '',
     loginStatus: '',
     authToken: '',

@@ -1,0 +1,115 @@
+{
+    "page": 
+    {
+        "login": 
+        {
+            "Уз_уз": 
+                {
+                    "t1": "Хуш келибсиз! ",
+                    "t2": "Сизни яна кўришдан хурсандмиз!  Тез ўтказмалар,  миллионлаб одамлар ишонадиган тўловлар.",
+                    "t3": "Кириш",
+                    "t4": "Телефон Рақами",
+                    "t5": "Парол",
+                    "t6": "Қурулмани Эслаш",
+                    "t7": "Паролни Унутдингизми ?",
+                    "t8": "Кириш",
+                    "t9": "Аккаунтингиз Ёқми?",
+                    "t10": "Рўйхатдан Ўтиш"
+                },
+            "Uz_uz": 
+                {
+                    "t1": "Xush kelibsiz!",
+                    "t2": "Sizni yana ko'rishdan xursandmiz! Tez o'tkazmalar, millionlab odamlar ishonadigan to'lovlar.",
+                    "t3": "Kirish",
+                    "t4": "Telefon Raqami",
+                    "t5": "Parol",
+                    "t6": "Qurulmani eslash",
+                    "t7": "Parolni unutdingizmi ?",
+                    "t8": "Kirish",
+                    "t9": "Akkauntingiz yo'qmi?",
+                    "t10": "Ro'yxatdan o'tish"
+                },
+            "Eng_eng": 
+                {
+                    "t1": "Welcome back!",
+                    "t2": "We are glad to see you again! Instant transfers, payouts trusted by millions.",
+                    "t3": "Log In",
+                    "t4": "Phone Number",
+                    "t5": "Password",
+                    "t6": "Remember Me",
+                    "t7": "Forgot Password ?",
+                    "t8": "Login",
+                    "t9": "Don't have an account?",
+                    "t10": "Sign Up"
+                },
+            "Ru_ru": 
+                {
+                    "t1": "Добро пожаловать!",
+                    "t2": "Мы рады видеть вас снова! Мгновенные переводы, выплаты доверяют миллионы.",
+                    "t3": "Авторизоваться",
+                    "t4": "Номер Телефона",
+                    "t5": "Пароль",
+                    "t6": "Запомни меня",
+                    "t7": "Забыл пароль ?",
+                    "t8": "Авторизоваться",
+                    "t9": "У вас нет аккаунта?",
+                    "t10": "Регистрация"
+                }
+        },
+        "signup": 
+        {
+            "Уз_уз": 
+                {
+                    "t1": "Тасдиқланг!",
+                    "t2": "Сизни яна кўришдан хурсандмиз!  Тез ўтказмалар,  миллионлаб одамлар ишонадиган тўловлар.",
+                    "t3": "Кириш",
+                    "t4": "Телефон Рақами",
+                    "t5": "Парол",
+                    "t6": "Қурулмани Эслаш",
+                    "t7": "Паролни Унутдингизми ?",
+                    "t8": "Кириш",
+                    "t9": "Аккаунтингиз Ёқми?",
+                    "t10": "Рўйхатдан Ўтиш"
+                },
+            "Uz_uz": 
+                {
+                    "t1": "Tasdiqlang!",
+                    "t2": "Har kuni mobilePay minglab mijozlarni xursand qiladi.",
+                    "t3": "Kirish",
+                    "t4": "Telefon Raqami",
+                    "t5": "Parol",
+                    "t6": "Qurulmani eslash",
+                    "t7": "Parolni unutdingizmi ?",
+                    "t8": "Kirish",
+                    "t9": "Akkauntingiz yo'qmi?",
+                    "t10": "Ro'yxatdan o'tish"
+                },
+            "Eng_eng": 
+                {
+                    "t1": "Get Verified!",
+                    "t2": "Every day, winn makes thousands of customers happy.",
+                    "t3": "Log In",
+                    "t4": "Phone Number",
+                    "t5": "Password",
+                    "t6": "Remember Me",
+                    "t7": "Forgot Password ?",
+                    "t8": "Login",
+                    "t9": "Don't have an account?",
+                    "t10": "Sign Up"
+                },
+            "Ru_ru": 
+                {
+                    "t1": "Пройти проверку!",
+                    "t2": "Каждый день winn радует тысячи клиентов.",
+                    "t3": "Авторизоваться",
+                    "t4": "Номер Телефона",
+                    "t5": "Пароль",
+                    "t6": "Запомни меня",
+                    "t7": "Забыл пароль ?",
+                    "t8": "Авторизоваться",
+                    "t9": "У вас нет аккаунта?",
+                    "t10": "Регистрация"
+                }   
+        }    
+    }
+}

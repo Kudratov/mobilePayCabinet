@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Languages from './../../store/languages.json';
+
 class GotVerified extends Component {
     render() {
         return (

@@ -63,7 +63,7 @@ class ProfileTransactionHistory extends React.Component {
     //         })
     // }
 
-    render() {        
+    render() {
         return (
             <div>
                 <h2 className="font-weight-400 mb-3">Transactions</h2>
@@ -81,7 +81,35 @@ class ProfileTransactionHistory extends React.Component {
                             startDateId="your_unique_start_date_id"
                             endDate={this.state.endDate}
                             endDateId="your_unique_end_date_id"
-                            onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                            onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate }, 
+                            () => {
+                                this.setState({realEndDate: moment(this.state.startDate).format("YYYY-DD-MM"), realEndDate: moment(this.state.endDate).format("YYYY-DD-MM")},
+                                () => {
+                                    
+                                    let _urlTran = `${url}transactions-api/v1.0/transactions`;
+                                    const headers = {
+                                        'Content-Type': 'application/json',
+                                        'Accept': 'application/json',
+                                        Authorization: `Bearer ${this.props.token}`
+                                    }
+                                    let data = {
+                                        from: this.state.realStartDate.split("-")[0] + `-` + this.state.realStartDate.split("-")[2] + `-` + this.state.realStartDate.split("-")[1],
+                                        to: this.state.realEndDate.split("-")[0] + `-` + this.state.realEndDate.split("-")[2] + `-` + this.state.realEndDate.split("-")[1],
+                                        pageNumber: `1`,
+                                        pageSize: '7',
+                                        cardIds: this.props.transactionHCardIDs
+                                    }
+                                    axios.post(`${_urlTran}`, JSON.stringify(data), {headers: headers})
+                                        .then((response) => {
+                                            this.props.dispatch(addTransactionInfo(`${response.data.currentPage}-${Math.ceil(response.data.totalCount/response.data.pageSize)}-${response.data.hasMore}`));
+                                            this.props.dispatch(addTransactionHistory(response.data.transactions.sort(function(a, b){return new Date(b.transactionDate) - new Date(a.transactionDate)})));
+                                        })
+                                        .catch((error) => {
+                                            
+                                        })
+
+                                })
+                            })}
                             focusedInput={this.state.focusedInput}                            
                             onFocusChange={focusedInput => this.setState({focusedInput})}
                             isOutsideRange={day => !isInclusivelyBeforeDay(day, moment())}
@@ -116,25 +144,13 @@ class ProfileTransactionHistory extends React.Component {
                             <input type="radio" id="paymentsReceived" name="allFilters" className="custom-control-input" />
                             <label className="custom-control-label" htmlFor="paymentsReceived">Payments Received</label>
                         </div>
-                        <div className="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="refunds" name="allFilters" className="custom-control-input" />
-                            <label className="custom-control-label" htmlFor="refunds">Refunds</label>
-                        </div>
-                        <div className="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="withdrawal" name="allFilters" className="custom-control-input" />
-                            <label className="custom-control-label" htmlFor="withdrawal">Withdrawal</label>
-                        </div>
-                        <div className="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="deposit" name="allFilters" className="custom-control-input" />
-                            <label className="custom-control-label" htmlFor="deposit">Deposit</label>
-                        </div>
                         </div>
                         {/* All Filters collapse End */}
                     </div>
                     </form>
                 </div>
                 </div>
-                <TransactionsHistoryLists />
+                <TransactionsHistoryLists startDate={this.state.realStartDate.split("-")[0] + `-` + this.state.realStartDate.split("-")[2] + `-` + this.state.realStartDate.split("-")[1]} endDate={this.state.realEndDate.split("-")[0] + `-` + this.state.realEndDate.split("-")[2] + `-` + this.state.realEndDate.split("-")[1]} />
             </div>
         );
     }
@@ -147,7 +163,8 @@ const mapStateToProps = (state)=>{
         pNumber: state.phoneNumber,
         cardCred: state.cardCred,
         cards: state.cards,
-        currentPage: state.transactionInfo.split("-")[0]
+        currentPage: state.transactionInfo.split("-")[0],
+        transactionHCardIDs: state.transactionHCardIDs
     }
 }
 

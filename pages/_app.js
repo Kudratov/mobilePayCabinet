@@ -2,7 +2,9 @@ import '../assets/css/bootstrap.min.css';
 import '../assets/css/icofont.min.css';
 import '../assets/css/style.css';
 import "./../assets/vendor/font-awesome/css/all.min.css";
-import "./../assets/sass/stylesheet.scss";
+
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 
 
 import { Provider } from 'react-redux';
@@ -13,7 +15,7 @@ import withRedux from 'next-redux-wrapper';
 import { initStore } from '../store/reducers/cartReducer';
 import { DefaultSeo } from 'next-seo';
 import GoTop from '../components/Shared/GoTop';
-import Loader from '../components/Shared/Loader';
+import Loader from '../components/Cabinet/Assets/Preloader';
 import axios from 'axios';
 import Redirect from './../assets/js/RedirectsTo';
 import Cookie from 'js-cookie';

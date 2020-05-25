@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Languages from './../../store/languages.json';
+
 class Welcome extends Component {
 
     render() {
@@ -16,8 +18,8 @@ class Welcome extends Component {
                     </div>
                     <div className="row no-gutters my-auto">
                         <div className="col-10 col-lg-9 mx-auto">
-                        <h1 className="text-11 text-white mb-4">Welcome back!</h1>
-                        <p className="text-4 text-white line-height-4 mb-5">We are glad to see you again! Instant deposits, withdrawals &amp; payouts trusted by millions worldwide.</p>
+                        <h1 className="text-11 text-white mb-4">{Languages.page.login.Уз_уз.t1}</h1>
+                        <p className="text-4 text-white line-height-4 mb-5">{Languages.page.login.Уз_уз.t2}</p>
                         </div>
                     </div>
                     </div>

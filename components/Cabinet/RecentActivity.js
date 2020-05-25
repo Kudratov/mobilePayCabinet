@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import Link from 'next/link';
 import Router from 'next/router';
 
 import {addHistory, addFavoriteTransaction, addRecieverInfo} from './../../store/actions/cartActions';
@@ -92,7 +93,7 @@ class RecentActivity extends React.Component {
 
                                     {i < 7 ? 
                                     
-                                        <div className="transaction-item px-4 py-3" data-toggle="modal" data-target={"#text-number-" + i}>
+                                        <div key={i} className="transaction-item px-4 py-3" data-toggle="modal" data-target={"#text-number-" + i}>
                                             <div className="row align-items-center flex-row">
                                                 <div className="col-2 col-sm-1 text-center"> 
                                                     <span className="d-block text-4 font-weight-300">{element.transactionDate.split("-")[2].split("T")[0]}</span> 
@@ -132,7 +133,7 @@ class RecentActivity extends React.Component {
 
                         {i < 7 ? 
                         
-                            <div id={"text-number-" + i} className="modal fade" role="dialog" aria-hidden="true">
+                            <div key={i} id={"text-number-" + i} className="modal fade" role="dialog" aria-hidden="true">
                                 <div className="modal-dialog modal-dialog-centered transaction-details" role="document">
                                 <div className="modal-content">
                                     <div className="modal-body">
@@ -198,7 +199,7 @@ class RecentActivity extends React.Component {
             {/* Transaction Item Details Modal End */}
             {/* View all Link
                 =============================== */}
-            <div className="text-center mt-4"><a href="transactions.html" className="btn-link text-3">View all<i className="fas fa-chevron-right text-2 ml-2" /></a></div>
+            <div className="text-center mt-4"><Link href="/cabinet-history"><a className="btn-link text-3">View all<i className="fas fa-chevron-right text-2 ml-2" /></a></Link></div>
         </div> 
         );
     }
