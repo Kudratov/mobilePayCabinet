@@ -7,6 +7,8 @@ import Router from 'next/router';
 import {addHistory, addFavoriteTransaction, addRecieverInfo} from './../../store/actions/cartActions';
 import {url} from './../../store/urls';
 
+import Languages from './../../store/languages.json';
+
 class RecentActivity extends React.Component {
 
     constructor(props){
@@ -69,15 +71,15 @@ class RecentActivity extends React.Component {
     render() {
         return (
             <div className="bg-light shadow-sm rounded py-4 mb-4">
-            <h3 className="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">Favorite Transactions</h3>
+            <h3 className="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">{Languages.page.cabinet_main.Уз_уз.t23}</h3>
             {/* Title
                 =============================== */}
             <div className="transaction-title py-2 px-4">
             <div className="row">
-                <div className="col-2 col-sm-1 text-center"><span className>Date</span></div>
-                <div className="col col-sm-7">Description</div>
-                <div className="col-auto col-sm-2 d-none d-sm-block text-center">Status</div>
-                <div className="col-3 col-sm-2 text-right">Amount</div>
+                <div className="col-2 col-sm-1 text-center"><span className>{Languages.page.cabinet_main.Уз_уз.t24}</span></div>
+                <div className="col col-sm-7">{Languages.page.cabinet_main.Уз_уз.t28}</div>
+                <div className="col-auto col-sm-2 d-none d-sm-block text-center">{Languages.page.cabinet_main.Уз_уз.t25}</div>
+                <div className="col-3 col-sm-2 text-right">{Languages.page.cabinet_main.Уз_уз.t26}</div>
             </div>
             </div>
             {/* Title End */}
@@ -107,7 +109,7 @@ class RecentActivity extends React.Component {
                                                     <span className="text-success" data-toggle="tooltip" data-original-title="Completed"><i className="fas fa-check-circle" /></span> 
                                                 </div>
                                                 <div className="col-3 col-sm-2 text-right text-4"> 
-                                                    <span className="text-nowrap">{(element.amount/100).toLocaleString().split(',').join(' ')}</span> <span className="text-2 text-uppercase">({element.card.currency.code})</span> 
+                                                    <span className="text-nowrap">{((element.amount/100)*100/105).toLocaleString().split(',').join(' ')}</span> <span className="text-2 text-uppercase">({element.card.currency.code})</span> 
                                                 </div>
                                             </div>
                                         </div>
@@ -199,7 +201,7 @@ class RecentActivity extends React.Component {
             {/* Transaction Item Details Modal End */}
             {/* View all Link
                 =============================== */}
-            <div className="text-center mt-4"><Link href="/cabinet-history"><a className="btn-link text-3">View all<i className="fas fa-chevron-right text-2 ml-2" /></a></Link></div>
+            <div className="text-center mt-4"><Link href="/cabinet-history"><a className="btn-link text-3">{Languages.page.cabinet_main.Уз_уз.t27}<i className="fas fa-chevron-right text-2 ml-2" /></a></Link></div>
         </div> 
         );
     }

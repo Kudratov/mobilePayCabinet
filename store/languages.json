@@ -14,7 +14,8 @@
                     "t7": "Паролни Унутдингизми ?",
                     "t8": "Кириш",
                     "t9": "Аккаунтингиз Ёқми?",
-                    "t10": "Рўйхатдан Ўтиш"
+                    "t10": "Рўйхатдан Ўтиш",
+                    "t11": "Паролни Киритинг"
                 },
             "Uz_uz": 
                 {
@@ -27,7 +28,8 @@
                     "t7": "Parolni unutdingizmi ?",
                     "t8": "Kirish",
                     "t9": "Akkauntingiz yo'qmi?",
-                    "t10": "Ro'yxatdan o'tish"
+                    "t10": "Ro'yxatdan o'tish",
+                    "t11": "Parolni Kiriting"
                 },
             "Eng_eng": 
                 {
@@ -40,7 +42,8 @@
                     "t7": "Forgot Password ?",
                     "t8": "Login",
                     "t9": "Don't have an account?",
-                    "t10": "Sign Up"
+                    "t10": "Sign Up",
+                    "t11": "Enter Password"
                 },
             "Ru_ru": 
                 {
@@ -53,7 +56,8 @@
                     "t7": "Забыл пароль ?",
                     "t8": "Авторизоваться",
                     "t9": "У вас нет аккаунта?",
-                    "t10": "Регистрация"
+                    "t10": "Регистрация",
+                    "t11": "Введите Пароль"
                 }
         },
         "signup": 
@@ -61,55 +65,372 @@
             "Уз_уз": 
                 {
                     "t1": "Тасдиқланг!",
-                    "t2": "Сизни яна кўришдан хурсандмиз!  Тез ўтказмалар,  миллионлаб одамлар ишонадиган тўловлар.",
-                    "t3": "Кириш",
+                    "t2": "Ҳар куни winn минглаб мижозларни хурсанд қилади. ",
+                    "t3": "Рўйхатдан ўтиш",
                     "t4": "Телефон Рақами",
                     "t5": "Парол",
                     "t6": "Қурулмани Эслаш",
                     "t7": "Паролни Унутдингизми ?",
-                    "t8": "Кириш",
-                    "t9": "Аккаунтингиз Ёқми?",
-                    "t10": "Рўйхатдан Ўтиш"
+                    "t8": "Кейинги",
+                    "t9": "Сизда аллақачон аккаунтингиз борми?",
+                    "t10": "Кириш",
+                    "t11": "Паролни Киритинг",
+                    "t12": "Паролни Тасдиқланг",
+                    "t13": "СМС Тасдиқлаш",
+                    "t14": "СМС Коди",
+                    "t15": "Рўйхатдан Ўтиш"
                 },
             "Uz_uz": 
                 {
                     "t1": "Tasdiqlang!",
-                    "t2": "Har kuni mobilePay minglab mijozlarni xursand qiladi.",
-                    "t3": "Kirish",
+                    "t2": "Har kuni winn minglab mijozlarni xursand qiladi.",
+                    "t3": "Ro'yxatdan o'tish",
                     "t4": "Telefon Raqami",
                     "t5": "Parol",
                     "t6": "Qurulmani eslash",
                     "t7": "Parolni unutdingizmi ?",
-                    "t8": "Kirish",
-                    "t9": "Akkauntingiz yo'qmi?",
-                    "t10": "Ro'yxatdan o'tish"
+                    "t8": "Keyingi",
+                    "t9": "Sizda allaqachon akkauntingiz bormi?",
+                    "t10": "Kirish",
+                    "t11": "Parolni Kiriting",
+                    "t12": "Parolni Tasdiqlang",
+                    "t13": "SMS Tasdiqlash",
+                    "t14": "SMS Kodi",
+                    "t15": "Ro'yxatdan O'tish"
                 },
             "Eng_eng": 
                 {
                     "t1": "Get Verified!",
                     "t2": "Every day, winn makes thousands of customers happy.",
-                    "t3": "Log In",
+                    "t3": "Sign Up",
                     "t4": "Phone Number",
                     "t5": "Password",
                     "t6": "Remember Me",
                     "t7": "Forgot Password ?",
-                    "t8": "Login",
-                    "t9": "Don't have an account?",
-                    "t10": "Sign Up"
+                    "t8": "Next",
+                    "t9": "Already have an account?",
+                    "t10": "Log In",
+                    "t11": "Enter Password",
+                    "t12": "Confirm Password",
+                    "t13": "SMS Verfication",
+                    "t14": "SMS Code",
+                    "t15": "Sign Up"
                 },
             "Ru_ru": 
                 {
                     "t1": "Пройти проверку!",
                     "t2": "Каждый день winn радует тысячи клиентов.",
-                    "t3": "Авторизоваться",
+                    "t3": "Регистрация",
                     "t4": "Номер Телефона",
                     "t5": "Пароль",
                     "t6": "Запомни меня",
                     "t7": "Забыл пароль ?",
-                    "t8": "Авторизоваться",
-                    "t9": "У вас нет аккаунта?",
-                    "t10": "Регистрация"
+                    "t8": "Далее",
+                    "t9": "Уже есть аккаунт?",
+                    "t10": "Авторизоваться",
+                    "t11": "Введите Пароль",
+                    "t12": "Подтвердите Пароль",
+                    "t13": "СМС Подтверждение",
+                    "t14": "Код СМС",
+                    "t15": "Зарегистрироваться"
                 }   
-        }    
+        },
+        "cabinet_main":
+        {
+            "Уз_уз": 
+                {
+                    "t1": "Асосий",
+                    "t2": "Мониторинг",
+                    "t3": "Тўловлар",
+                    "t4": "Трансфер",
+                    "t5": "Менинг Карталарим",
+                    "t6": "Созламалар",
+                    "t7": "Чиқиш",
+                    "t8": "Таҳрирлаш",
+                    "t9": "Ўчириш",
+                    "t10": "Картани Янгиланг",
+                    "t11": "Карта Рақами",
+                    "t12": "Тугаш Муддати",
+                    "t13": "Асосий Карта",
+                    "t14": "Иккинчи Карта",
+                    "t15": "Карта Эгасининг Исми",
+                    "t16": "Картани Янгилаш",
+                    "t17": "Янги Карта Қўшиш",
+                    "t18": "Янги Қўшиш",
+                    "t19": "СМС Тасдиқлаш",
+                    "t20": "СМС Юборилган Рақам",
+                    "t21": "СМС Коди",
+                    "t22": "Тасдиқлаш",
+                    "t23": "Сақланган Тўловлар",
+                    "t24": "Сана",
+                    "t25": "Ҳолат",
+                    "t26": "Миқдор",
+                    "t27": "Ҳаммасини кўриш",
+                    "t28": "Таъриф",
+                    "t29": "Фойдаланувчи Исми",
+                    "t30": "Мавжуд Баланс"
+                },
+            "Uz_uz": 
+                {
+                    "t1": "Asosiy",
+                    "t2": "Monitoring",
+                    "t3": "To'lovlar",
+                    "t4": "Transfer",
+                    "t5": "Mening Kartalarim",
+                    "t6": "Sozlamalar",
+                    "t7": "Chiqish",
+                    "t8": "Tahrirlash",
+                    "t9": "O'chirish",
+                    "t10": "Kartani Yangilang",
+                    "t11": "Karta Raqami",
+                    "t12": "Tugash Muddati",
+                    "t13": "Asosiy Karta",
+                    "t14": "Ikkinchi Karta",
+                    "t15": "Karta Egasining Ismi",
+                    "t16": "Kartani Yangilash",
+                    "t17": "Yangi Karta Qo‘shish",
+                    "t18": "Yangi Qo‘shish",
+                    "t19": "SMS Tasdiqlash",
+                    "t20": "SMS Yuborilgan Raqam",
+                    "t21": "SMS Kodi",
+                    "t22": "Tasdiqlash",
+                    "t23": "Saqlangan To'lovlar",
+                    "t24": "Sana",
+                    "t25": "Holat",
+                    "t26": "Miqdor",
+                    "t27": "Hammasini ko'rish",
+                    "t28": "Ta'rif",
+                    "t29": "Foydalanuvchi Ismi",
+                    "t30": "Mavjud Balans"
+                },
+            "Eng_eng": 
+                {
+                    "t1": "Dashboard",
+                    "t2": "Monitoring",
+                    "t3": "Payment",
+                    "t4": "Transfer",
+                    "t5": "My Cards",
+                    "t6": "Settings",
+                    "t7": "Sign Out",
+                    "t8": "Edit",
+                    "t9": "Delete",
+                    "t10": "Update Card",
+                    "t11": "Card Number",
+                    "t12": "Expiry Date",
+                    "t13": "Main Card",
+                    "t14": "Secondary Card",
+                    "t15": "Card Holder Name",
+                    "t16": "Update Card",
+                    "t17": "Add New Card",
+                    "t18": "Add Card",
+                    "t19": "SMS Verfication",
+                    "t20": "SMS Sent Number",
+                    "t21": "SMS Code",
+                    "t22": "Confirm",
+                    "t23": "Saved Transactions",
+                    "t24": "Date",
+                    "t25": "Status",
+                    "t26": "Amount",
+                    "t27": "View all",
+                    "t28": "Description",
+                    "t29": "User Name",
+                    "t30": "Available Balance"
+                },
+            "Ru_ru": 
+                {
+                    "t1": "Главная",
+                    "t2": "Мониторинг",
+                    "t3": "Оплата",
+                    "t4": "Перевод",
+                    "t5": "Мои Карты",
+                    "t6": "Настройки",
+                    "t7": "Выход",
+                    "t8": "Редактировать",
+                    "t9": "Удалять",
+                    "t10": "Обновление Карты",
+                    "t11": "Номер Карты",
+                    "t12": "Срок Годности",
+                    "t13": "Основная Карта",
+                    "t14": "Вторичная Карта",
+                    "t15": "Имя Владельца Карты",
+                    "t16": "Обновить Карты",
+                    "t17": "Добавить Новую Карту",
+                    "t18": "Добавить Карту",
+                    "t19": "СМС Подтверждение",
+                    "t20": "Номер Отправленного SMS",
+                    "t21": "Код СМС",
+                    "t22": "Подтверждать",
+                    "t23": "Сохраненные Транзакции",
+                    "t24": "Дата",
+                    "t25": "Cтатус",
+                    "t26": "Сумма",
+                    "t27": "Посмотреть все",
+                    "t28": "Описание",
+                    "t29": "Имя Пользователя",
+                    "t30": "Доступные Баланс"
+                }
+        },
+        "cabenet_history":
+        {
+            "Уз_уз": 
+                {
+                    "t1": "Мониторинг",
+                    "t2": "Барча Транзаксиялар",
+                    "t3": "Барча Филтрлар",
+                    "t4": "График",
+                    "t5": "Сана",
+                    "t6": "Ҳолат",
+                    "t7": "Миқдор",
+                    "t8": "Ҳаммасини кўриш",
+                    "t9": "Таъриф",
+                    "t10": "Олдинги",
+                    "t11": "Кейинги"
+                },
+            "Uz_uz": 
+                {
+                    "t1": "Monitoring",
+                    "t2": "Barcha Tranzaksiyalar",
+                    "t3": "Barcha Filtrlar",
+                    "t4": "Grafik",
+                    "t5": "Sana",
+                    "t6": "Holat",
+                    "t7": "Miqdor",
+                    "t8": "Hammasini ko'rish",
+                    "t9": "Ta'rif",
+                    "t10": "Oldingi",
+                    "t11": "Keyingi"
+                },
+            "Eng_eng": 
+                {
+                    "t1": "Monitoring",
+                    "t2": "All Transactions",
+                    "t3": "All Filters",
+                    "t4": "Graph",
+                    "t5": "Date",
+                    "t6": "Status",
+                    "t7": "Amount",
+                    "t8": "View all",
+                    "t9": "Description",
+                    "t10": "Previous",
+                    "t11": "Next"
+                },
+            "Ru_ru": 
+                {
+                    "t1": "Мониторинг",
+                    "t2": "Все Транзакции",
+                    "t3": "Все Фильтры",
+                    "t4": "График",
+                    "t5": "Дата",
+                    "t6": "Cтатус",
+                    "t7": "Сумма",
+                    "t8": "Посмотреть все",
+                    "t9": "Описание",
+                    "t10": "Предыдущий",
+                    "t11": "Cледующий"
+                }
+        },
+        "cabenet_payment":
+        {
+            "Уз_уз": 
+                {
+                    "t1": "Тўлов"
+                },
+            "Uz_uz": 
+                {
+                    "t1": "To'lov"
+                },
+            "Eng_eng": 
+                {
+                    "t1": "Payment"
+                },
+            "Ru_ru": 
+                {
+                    "t1": "Оплата"
+                }
+        },
+        "cabenet_money_send":
+        {
+            "Уз_уз": 
+                {
+                    "t1": "Юбориш",
+                    "t2": "Сўраш",
+                    "t3": "Пул ўтказиш",
+                    "t4": "Пулингизни исталган вақтда ва ҳар қандай жойда биз билан юборинг.",
+                    "t5": "Қабул қилувчи ҳақида маълумотлар",
+                    "t6": "Қабул қилувчи",
+                    "t7": "Ўтказма суммаси",
+                    "t8": "Миқдорни Киритинг",
+                    "t9": "Давом Этиш",
+                    "t10": "Комиссия",
+                    "t11": "Умумий тўлов",
+                    "t12": "Карта Эгаси",
+                    "t13": "Сизга пул юбормоқдасиз",
+                    "t14": "Карта Рақами",
+                    "t15": "Картани танланг",
+                    "t16": "Батафсил",
+                    "t17": "Тўлов Тавсифи"
+                },
+            "Uz_uz": 
+                {
+                    "t1": "Yuborish",
+                    "t2": "So'rash",
+                    "t3": "Pul o'tkazish",
+                    "t4": "Pulingizni istalgan vaqtda va har qanday joyda biz bilan yuboring.",
+                    "t5": "Qabul qiluvchi haqida ma'lumotlar",
+                    "t6": "Qabul qiluvchi",
+                    "t7": "O'tkazma summasi",
+                    "t8": "Miqdorni Kiriting",
+                    "t9": "Davom Etish",
+                    "t10": "Komissiya",
+                    "t11": "Umumiy to'lov",
+                    "t12": "Karta Egasi",
+                    "t13": "Sizga pul yubormoqdasiz",
+                    "t14": "Karta Raqami",
+                    "t15": "Kartani tanlang",
+                    "t16": "Batafsil",
+                    "t17": "To'lov Tavsifi"
+                },
+            "Eng_eng": 
+                {
+                    "t1": "Send",
+                    "t2": "Request",
+                    "t3": "Transfer Money",
+                    "t4": "Send your money anytime and anywhere with us.",
+                    "t5": "Receiver Details",
+                    "t6": "Recipient",
+                    "t7": "Transfer amount",
+                    "t8": "Enter The Amount",
+                    "t9": "Continue",
+                    "t10": "Commission",
+                    "t11": "Total payment",
+                    "t12": "Card Holder",
+                    "t13": "You are sending money to",
+                    "t14": "Card Number",
+                    "t15": "Select card",
+                    "t16": "Details",
+                    "t17": "Payment Description"
+                },
+            "Ru_ru": 
+                {
+                    "t1": "Oтправлять",
+                    "t2": "Запрос",
+                    "t3": "Перевести Деньги",
+                    "t4": "Отправьте свои деньги в любое время и в любом месте с нами.",
+                    "t5": "Детали Получателя",
+                    "t6": "Получатель",
+                    "t7": "Сумма перевода",
+                    "t8": "Введите Cумму",
+                    "t9": "Продолжить",
+                    "t10": "Комиссия",
+                    "t11": "Всего к оплате",
+                    "t12": "Владельца Карта",
+                    "t13": "Вы отправляете деньги на",
+                    "t14": "Номер Карты",
+                    "t15": "Выберите карту",
+                    "t16": "Детали",
+                    "t17": "Oписание Oплаты"
+                }
+        }
     }
+
 }

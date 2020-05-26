@@ -5,13 +5,9 @@ import Router from 'next/router';
 import axios from 'axios';
 import Toast from 'light-toast';
 
-import ConfirmSendMoney from './ConfirmSendMoney';
-
 import {url} from './../../store/urls';
 import {addRecieverInfo, addTransferAmount, addCardIdToTransfer} from './../../store/actions/cartActions';
-
-    import './../../assets/vendor/bootstrap-select/css/bootstrap-select.min.css';
-
+import Languages from './../../store/languages.json';
 
 class MoneySend extends React.Component {
     constructor (props) {
@@ -85,40 +81,42 @@ class MoneySend extends React.Component {
             <div>
                 <div id="content" className="py-4">
                 <div className="container">
-                <h2 className="font-weight-400 text-center mt-3">Send Money</h2>
-                <p className="text-4 text-center mb-4">Send your money on anytime, anywhere in the world.</p>
+                <h2 className="font-weight-400 text-center mt-3">{Languages.page.cabenet_money_send.Уз_уз.t3}</h2>
+                <p className="text-4 text-center mb-4">{Languages.page.cabenet_money_send.Уз_уз.t4}</p>
                 <div className="row">
                     <div className="col-md-8 col-lg-6 col-xl-5 mx-auto">
                     <div className="bg-light shadow-sm rounded p-3 p-sm-4 mb-4">
-                        <h3 className="text-5 font-weight-400 mb-3">Personal Details</h3>
+                        <h3 className="text-5 font-weight-400 mb-3">{Languages.page.cabenet_money_send.Уз_уз.t5}</h3>
                         {/* Send Money Form
                     ============================================= */}
                         <form id="form-send-money" method="post">
 
                         <div className="form-group">
-                            <label htmlFor="youSend">Recipient</label>
+                            <label htmlFor="youSend">{Languages.page.cabenet_money_send.Уз_уз.t6}</label>
                             <input type="text" className="form-control" maxLength="19" onChange={(e) => this.handleCardNumber(e)} placeholder="0000 0000 0000 0000" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="youSend">You Send</label>
+                        {this.state.receiverFullName && <p className="text-muted">{Languages.page.cabenet_money_send.Уз_уз.t12}: <span className="font-weight-500">{this.state.receiverFullName}</span></p>}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="youSend">{Languages.page.cabenet_money_send.Уз_уз.t7}</label>
                             <div className="input-group">
-                            <input type="number" className="form-control" onChange={(e) => this.handleAmount(e)} pattern="^[0-9]{16}$" placeholder="Enter The Amount"/>
+                            <input type="number" className="form-control" onChange={(e) => this.handleAmount(e)} pattern="^[0-9]{16}$" placeholder={Languages.page.cabenet_money_send.Уз_уз.t8}/>
                             <div className="input-group-append"> <span className="input-group-text p-2">
                                 UZS
                                 </span> </div>
                             </div>
-                        </div>
-                        {this.state.receiverFullName && <p className="text-muted text-center">CardHolder: <span className="font-weight-500">{this.state.receiverFullName}</span></p>}
+                        </div>                        
                         <hr />
                         {this.state.amount &&
                             <>
                             
-                            <p className="mb-1">Total fees <span className="text-3 float-right">{(Number(this.state.amount) * 0.05).toLocaleString().split(',').join(' ')} UZS</span></p>
-                            <p className="mb-1">Send Amount <span className="text-3 float-right">{(Number(this.state.amount)).toLocaleString().split(',').join(' ')} UZS</span></p>
-                            <p className="font-weight-500">Total To Pay <span className="text-3 float-right">{(Number(this.state.amount) * 1.05).toLocaleString().split(',').join(' ')} UZS</span></p>
+                            <p className="mb-1">{Languages.page.cabenet_money_send.Уз_уз.t10} <span className="text-3 float-right">{(Number(this.state.amount) * 0.05).toLocaleString().split(',').join(' ')} UZS</span></p>
+                            <p className="mb-1">{Languages.page.cabenet_money_send.Уз_уз.t7} <span className="text-3 float-right">{(Number(this.state.amount)).toLocaleString().split(',').join(' ')} UZS</span></p>
+                            <p className="font-weight-500">{Languages.page.cabenet_money_send.Уз_уз.t11} <span className="text-3 float-right">{(Number(this.state.amount) * 1.05).toLocaleString().split(',').join(' ')} UZS</span></p>
                         </>
                         }
-                        <a className="btn btn-primary btn-block text-white card-add-f-btn disactive" id="send-money-btn" onClick={this.handleSend}>Continue</a>
+                        <a className="btn btn-primary btn-block text-white card-add-f-btn disactive" id="send-money-btn" onClick={this.handleSend}>{Languages.page.cabenet_money_send.Уз_уз.t9}</a>
                         </form>
                     </div>
                     </div>

@@ -17,8 +17,8 @@ class GotVerified extends Component {
                     </div>
                     <div className="row my-auto">
                         <div className="col-10 col-lg-9 mx-auto">
-                        <h1 className="text-11 text-white mb-4">Get Verified!</h1>
-                        <p className="text-4 text-white line-height-4 mb-5">Every day, mobilePay makes thousands of customers happy.</p>
+                        <h1 className="text-11 text-white mb-4">{Languages.page.signup.Уз_уз.t1}</h1>
+                        <p className="text-4 text-white line-height-4 mb-5">{Languages.page.signup.Уз_уз.t2}</p>
                         </div>
                     </div>
                     </div>

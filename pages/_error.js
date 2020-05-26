@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
-import Banner from '../components/Error/Banner';
 
 class Error extends Component {
 
@@ -12,7 +11,6 @@ class Error extends Component {
     render() {
         return (
             <React.Fragment>
-                <Banner />
 
                 <section className="error-area ptb-100">
                     <div className="container">

@@ -6,8 +6,6 @@ import axios from 'axios';
 import moment from 'moment';
 import Toast from 'light-toast';
 
-import "./../../assets/sass/stylesheet.scss";
-
 import {url} from './../../store/urls';
 import {addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
 
@@ -114,7 +112,7 @@ class Login extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="loginPassword">{Languages.page.login.Уз_уз.t5}</label>
-                                <input type="password" className="form-control" id="loginPassword" onChange={this.handlePasswordLogin} required placeholder="Enter Password" />
+                                <input type="password" className="form-control" id="loginPassword" onChange={this.handlePasswordLogin} required placeholder={Languages.page.login.Уз_уз.t11} />
                             </div>
                             <div className="row">
                                 <div className="col-sm">

@@ -2,13 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Router from 'next/router';
 import axios from 'axios';
-import cookies from 'next-cookies';
 import Cookie from 'js-cookie';
+import Link from 'next/link';
 
 import {addCard} from './../../store/actions/cartActions';
 import {url} from './../../store/urls';
 import {addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
 
+import Languages from './../../store/languages.json';
 
 class SecondaryMenu extends React.Component {
     componentDidMount () {
@@ -57,8 +58,8 @@ class SecondaryMenu extends React.Component {
                 <div className="bg-primary">
                     <div className="container d-flex justify-content-center">
                     <ul className="nav secondary-nav">
-                        <li className="nav-item"> <a className={`nav-link ${send} card-add-f-btn`} href="/cabinet-sned">Send</a></li>
-                        <li className="nav-item"> <a className={`nav-link ${request} card-add-f-btn`} href="/cabinet-request">Request</a></li>
+                        <li className="nav-item"> <Link href="/cabinet-sned"><a className={`nav-link ${send} card-add-f-btn`}>{Languages.page.cabenet_money_send.Уз_уз.t1}</a></Link></li>
+                        <li className="nav-item"> <Link href="/cabinet-request"><a className={`nav-link ${request} card-add-f-btn`}>{Languages.page.cabenet_money_send.Уз_уз.t2}</a></Link></li>
                     </ul>
                     </div>
                 </div>

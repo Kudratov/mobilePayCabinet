@@ -5,7 +5,7 @@ import Router from 'next/router';
 import axios from 'axios';
 import moment from 'moment';
 
-import "./../../assets/sass/stylesheet.scss";
+import Languages from './../../store/languages.json';
 
 import {url} from './../../store/urls';
 import {addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
@@ -145,23 +145,23 @@ class Signup extends Component {
                 <div className="container my-4 display-true-class" id="div-for-register-first-display">
                     <div className="row">
                     <div className="col-11 col-lg-9 col-xl-8 mx-auto setting-shadow">
-                        <h3 className="font-weight-400 mb-4">Sign Up</h3>
+                        <h3 className="font-weight-400 mb-4">{Languages.page.signup.Уз_уз.t3}</h3>
                         <form id="loginForm" method="post">
                         <div className="form-group">
-                            <label htmlFor="fullName">Phone Number</label>
+                            <label htmlFor="fullName">{Languages.page.signup.Уз_уз.t4}</label>
                             <input type="text" className="form-control" id="fullName" required onChange={this.checkPhoneNumberExists} maxLength="17" value={`+${this.state.phoneNumber}`} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="emailAddress">Password</label>
-                            <input type="password" className="form-control" id="emailAddress" onChange={this.handlePassword} minLength='2' required placeholder="Enter Password" />
+                            <label htmlFor="emailAddress">{Languages.page.signup.Уз_уз.t5}</label>
+                            <input type="password" className="form-control" id="emailAddress" onChange={this.handlePassword} minLength='2' required placeholder={Languages.page.signup.Уз_уз.t11} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="loginPassword">Password</label>
-                            <input type="password" className="form-control" id="loginPassword" onChange={this.handleConfirmedPassword} required placeholder="Confirm Password" />
+                            <label htmlFor="loginPassword">{Languages.page.signup.Уз_уз.t5}</label>
+                            <input type="password" className="form-control" id="loginPassword" onChange={this.handleConfirmedPassword} required placeholder={Languages.page.signup.Уз_уз.t12} />
                         </div>
-                        <a onClick={this.handleRegisterNext} disabled={(this.state.passPos)} className="btn btn-primary btn-block my-4 text-white card-add-f-btn" type="submit">Next</a>
+                        <a onClick={this.handleRegisterNext} disabled={(this.state.passPos)} className="btn btn-primary btn-block my-4 text-white card-add-f-btn" type="submit">{Languages.page.signup.Уз_уз.t8}</a>
                         </form>
-                        <p className="text-3 text-center text-muted">Already have an account? <Link href="/login"><a className="btn-link">Log In</a></Link></p>
+                        <p className="text-3 text-center text-muted">{Languages.page.signup.Уз_уз.t9} <Link href="/login"><a className="btn-link">{Languages.page.signup.Уз_уз.t10}</a></Link></p>
                     </div>
                     </div>
                 </div>
@@ -170,19 +170,19 @@ class Signup extends Component {
                 <div className="container my-4 display-false-class" id="div-for-register-second-display">
                     <div className="row">
                     <div className="col-11 col-lg-9 col-xl-8 mx-auto setting-shadow">
-                        <h3 className="font-weight-400 mb-4">SMS Verfication</h3>
+                        <h3 className="font-weight-400 mb-4">{Languages.page.signup.Уз_уз.t13}</h3>
                         <form id="loginForm" method="post">
                         <div className="form-group">
-                            <label htmlFor="fullName">Phone Number</label>
+                            <label htmlFor="fullName">{Languages.page.signup.Уз_уз.t4}</label>
                             <input type="text" className="form-control" id="fullName" required onChange={this.checkPhoneNumberExists} maxLength="17" value={`+${this.state.phoneNumber}`} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="emailAddress">SMS Code</label>
+                            <label htmlFor="emailAddress">{Languages.page.signup.Уз_уз.t14}</label>
                             <input type="text" className="form-control" id="emailAddress" onChange={this.handleSmsCode} minLength='2' required placeholder="Enter SMS Code" />
                         </div>
-                        <a onClick={this.handleRegisterSecondPage} className="btn btn-primary btn-block my-4 text-white card-add-f-btn" type="submit">Sign up</a>
+                        <a onClick={this.handleRegisterSecondPage} className="btn btn-primary btn-block my-4 text-white card-add-f-btn" type="submit">{Languages.page.signup.Уз_уз.t15}</a>
                         </form>
-                        <p className="text-3 text-center text-muted">Already have an account? <Link href="/login"><a className="btn-link">Log In</a></Link></p>
+                        <p className="text-3 text-center text-muted">{Languages.page.signup.Уз_уз.t9} <Link href="/login"><a className="btn-link">{Languages.page.signup.Уз_уз.t10}</a></Link></p>
                     </div>
                     </div>
                 </div>

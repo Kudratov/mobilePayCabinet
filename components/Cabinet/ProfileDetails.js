@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 
+import Languages from './../../store/languages.json';
+
 class ProfileDetails extends React.Component {
     render() {        
         return (            
@@ -10,7 +12,7 @@ class ProfileDetails extends React.Component {
                         <input type="file" className="custom-file-input" id="customFile" />
                     </div>
                     </div>
-                    <p className="text-3 font-weight-500 mb-2">User Name</p>
+                    <p className="text-3 font-weight-500 mb-2">{Languages.page.cabinet_main.Уз_уз.t29}</p>
                     <p className="mb-2"><Link href="/cabinet-settings"><a className="text-5 text-light" data-toggle="tooltip" title="Edit Profile"><i className="fas fa-edit" /></a></Link></p>
                 </div>            
         );

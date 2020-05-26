@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 
 import Categories from './../../store/categories.json';
+import Languages from './../../store/languages.json';
 
 class CabinetPayment extends Component {
 
@@ -9,7 +10,7 @@ class CabinetPayment extends Component {
         return (
                 <div>
                     <div className="bg-light shadow-sm rounded p-4 mb-4">
-                    <h3 className="text-5 font-weight-400 mb-4">Payments <span className="text-muted text-4">(aviable merchants)</span></h3>
+                    <h3 className="text-5 font-weight-400 mb-4">{Languages.page.cabenet_payment.Уз_уз.t1} <span className="text-muted text-4"></span></h3>
                     <div>
                                 <div className="brands-grid separator-border bg-white">
                                 <div className="row align-items-center">

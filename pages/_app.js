@@ -1,7 +1,7 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/icofont.min.css';
-import '../assets/css/style.css';
-import "./../assets/vendor/font-awesome/css/all.min.css";
+import './../assets/css/bootstrap.min.css';
+import './../assets/css/icofont.min.css';
+import './../assets/css/style.css';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -14,7 +14,6 @@ import App, {Container} from 'next/app';
 import withRedux from 'next-redux-wrapper';
 import { initStore } from '../store/reducers/cartReducer';
 import { DefaultSeo } from 'next-seo';
-import GoTop from '../components/Shared/GoTop';
 import Loader from '../components/Cabinet/Assets/Preloader';
 import axios from 'axios';
 import Redirect from './../assets/js/RedirectsTo';
@@ -105,7 +104,6 @@ export default withRedux(initStore)(
                         <Provider store={store}>
                             <Component {...pageProps} />
                         </Provider>
-                        <GoTop scrollStepInPx="50" delayInMs="16.66" />
                         <Placeholder>
                             <Loader />
                         </Placeholder>

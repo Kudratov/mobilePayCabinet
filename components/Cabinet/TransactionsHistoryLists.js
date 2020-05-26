@@ -6,6 +6,8 @@ import axios from 'axios';
 import {url} from './../../store/urls';
 import {addTransactionHistory, addTransactionInfo, addTransactionCardIDs} from './../../store/actions/cartActions';
 
+import Languages from './../../store/languages.json';
+
 class TransactionsHistoryLists extends React.Component {
 
     constructor(props){
@@ -48,15 +50,15 @@ class TransactionsHistoryLists extends React.Component {
         const next_btn = this.props.hasMore === 'true' ? '' : 'disabled';
         return (
             <div className="bg-light shadow-sm rounded py-4 mb-4">
-                <h3 className="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">All Transactions</h3>
+                <h3 className="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">{Languages.page.cabenet_history.Уз_уз.t2}</h3>
                 {/* Title
                     =============================== */}
                 <div className="transaction-title py-2 px-4">
                     <div className="row">
-                    <div className="col-2 col-sm-1 text-center"><span className>Date</span></div>
-                    <div className="col col-sm-7">Description</div>
-                    <div className="col-auto col-sm-2 d-none d-sm-block text-center">Status</div>
-                    <div className="col-3 col-sm-2 text-right">Amount</div>
+                    <div className="col-2 col-sm-1 text-center"><span className>{Languages.page.cabenet_history.Уз_уз.t5}</span></div>
+                    <div className="col col-sm-7">{Languages.page.cabenet_history.Уз_уз.t9}</div>
+                    <div className="col-auto col-sm-2 d-none d-sm-block text-center">{Languages.page.cabenet_history.Уз_уз.t6}</div>
+                    <div className="col-3 col-sm-2 text-right">{Languages.page.cabenet_history.Уз_уз.t7}</div>
                     </div>
                 </div>
                 {/* Title End */}
@@ -220,8 +222,8 @@ class TransactionsHistoryLists extends React.Component {
                 {/* Pagination
                     ============================================= */}
                 <ul className="pagination justify-content-center mt-4 mb-0">
-                    <li className={`page-item ${prev_btn}`}> <a onClick={e => this.handlePrevAndNext(Number(this.props.currentPage) - 1)} className="page-link"><i className="fas fa-angle-left" /> Prev</a> </li>
-                    <li className={`page-item ${next_btn}`}> <a onClick={e => this.handlePrevAndNext(Number(this.props.currentPage) + 1)} className="page-link">Next <i className="fas fa-angle-right" /></a> </li>
+                    <li className={`page-item ${prev_btn}`}> <a onClick={e => this.handlePrevAndNext(Number(this.props.currentPage) - 1)} className="page-link"><i className="fas fa-angle-left" /> {Languages.page.cabenet_history.Уз_уз.t10}</a> </li>
+                    <li className={`page-item ${next_btn}`}> <a onClick={e => this.handlePrevAndNext(Number(this.props.currentPage) + 1)} className="page-link">{Languages.page.cabenet_history['Уз_уз'].t11} <i className="fas fa-angle-right" /></a> </li>
                 </ul>
                 {/* Paginations end */} 
                 </div>

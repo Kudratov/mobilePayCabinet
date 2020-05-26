@@ -2,9 +2,6 @@ import React from 'react';
 import Login from './../Login/Login';
 import Welcome from './../Login/Welcome';
 
-// import './../../assets/vendor/font-awesome/css/all.min.css';
-// import './../../assets/sass/stylesheet.scss';
-
 class ProfileLogin extends React.Component {
     render() {        
         return (

@@ -2,10 +2,11 @@ import React from 'react';
 import { DateRangePicker, isInclusivelyBeforeDay } from 'react-dates';
 import moment from "moment";
 import {connect} from 'react-redux';
-import Cookie from 'js-cookie';
 import axios from 'axios';
 
 import TransactionsHistoryLists from './TransactionsHistoryLists';
+
+import Languages from './../../store/languages.json';
 
 import {addTransactionHistory, addTransactionInfo, addTransactionCardIDs} from './../../store/actions/cartActions';
 import {url} from './../../store/urls';
@@ -31,42 +32,10 @@ class ProfileTransactionHistory extends React.Component {
         }
     }
 
-    // componentDidMount(){
-    //     const headers = {
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json',
-    //         Authorization: `Bearer ${Cookie.get('authtoken')}`
-    //     }
-
-    //     let _urlTran = `${url}transactions-api/v1.0/transactions`;
-
-    //     let data = {
-    //         from: this.state.realStartDate.split("-")[0] + `-` + this.state.realStartDate.split("-")[2] + `-` + this.state.realStartDate.split("-")[1],
-    //         to: this.state.realEndDate.split("-")[0] + `-` + this.state.realEndDate.split("-")[2] + `-` + this.state.realEndDate.split("-")[1],
-    //         pageNumber: this.props.currentPage,
-    //         pageSize: this.state.pageSize,
-    //         cardIds: this.state.cardIds
-    //     }
-        
-    //     this.state.cardIds.length = 0;
-    //     this.props.cards.map((element) => {
-    //         this.state.cardIds.push(element.id);
-    //     })
-    //     axios.post(`${_urlTran}`, JSON.stringify(data), {headers: headers})
-    //         .then((response) => {
-    //             this.props.dispatch(addTransactionCardIDs(data.cardIds))
-    //             this.props.dispatch(addTransactionInfo(`${response.data.currentPage}-${Math.ceil(response.data.totalCount/response.data.currentPage)}-${response.data.hasMore}`));
-    //             this.props.dispatch(addTransactionHistory(response.data.transactions.sort(function(a, b){return new Date(b.transactionDate) - new Date(a.transactionDate)})));
-    //         })
-    //         .catch((error) => {
-                
-    //         })
-    // }
-
     render() {
         return (
             <div>
-                <h2 className="font-weight-400 mb-3">Transactions</h2>
+                <h2 className="font-weight-400 mb-3">{Languages.page.cabenet_history.Уз_уз.t1}</h2>
                 {/* Filter
                 ============================================= */}
                 <div className="row">
@@ -121,12 +90,12 @@ class ProfileTransactionHistory extends React.Component {
                         </div>
                         {/* All Filters Link
                         ========================= */}
-                        <div className="col-auto d-flex align-items-center mr-auto form-group" data-toggle="collapse"> <a className="btn-link" data-toggle="collapse" href="#allFilters" aria-expanded="false" aria-controls="allFilters">All Filters<i className="fas fa-sliders-h text-3 ml-1" /></a> </div>
+                        <div className="col-auto d-flex align-items-center mr-auto form-group" data-toggle="collapse"> <a className="btn-link" data-toggle="collapse" href="#allFilters" aria-expanded="false" aria-controls="allFilters">{Languages.page.cabenet_history.Уз_уз.t3}<i className="fas fa-sliders-h text-3 ml-1" /></a> </div>
                         {/* Statements Link
                         ========================= */}
                         <div className="col-auto d-flex align-items-center ml-auto form-group">
-                        <div className="dropdown"> <a className="text-muted btn-link" href="#" role="button" id="statements" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fas fa-file-download text-3 mr-1" />Statements</a>
-                            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="statements"> <a className="dropdown-item" href="#">CSV</a> <a className="dropdown-item" href="#">PDF</a> </div>
+                        <div className="dropdown"> <a className="text-muted btn-link" role="button" id="statements" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fas fa-file-download text-3 mr-1" />{Languages.page.cabenet_history.Уз_уз.t4}</a>
+                            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="statements"> <a className="dropdown-item">CSV</a> <a className="dropdown-item" href="#">PDF</a> </div>
                         </div>
                         </div>
                         {/* All Filters collapse
@@ -134,7 +103,7 @@ class ProfileTransactionHistory extends React.Component {
                         <div className="col-12 collapse mb-3" id="allFilters">
                         <div className="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="allTransactions" name="allFilters" className="custom-control-input" defaultChecked />
-                            <label className="custom-control-label" htmlFor="allTransactions">All Transactions</label>
+                            <label className="custom-control-label" htmlFor="allTransactions">{Languages.page.cabenet_history.Уз_уз.t2}</label>
                         </div>
                         <div className="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="paymentsSend" name="allFilters" className="custom-control-input" />

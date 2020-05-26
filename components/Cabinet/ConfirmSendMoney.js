@@ -7,6 +7,7 @@ import axios from 'axios';
 import {url} from './../../store/urls';
 
 import {addCardIdToTransfer} from './../../store/actions/cartActions';
+import Languages from './../../store/languages.json';
 
 class ConfirmSendMoney extends React.Component {
 
@@ -36,10 +37,16 @@ class ConfirmSendMoney extends React.Component {
         let btn = document.getElementById("confirm-send-money-btn");
         btn.classList.add("disactive");
         let recieverInf = this.props.recieverInfo.split('-');
+        let cardType;
+        if(recieverInf[0].includes('8600')){
+            cardType = 'UzCard';
+        } else if(recieverInf[0].includes('9860')){
+            cardType = 'Humo';
+        }
         let data = {
             receiverCardNumber: recieverInf[0],
             amout: recieverInf[4] * 1.05,
-            cardProduct: 'UzCard',
+            cardProduct: cardType,
             receiverCardNumberExpiresOn: recieverInf[1],
             receiverFullName: recieverInf[2]
         }
@@ -64,9 +71,11 @@ class ConfirmSendMoney extends React.Component {
     render() {
         return (
             <div id="content" className="py-4">
+                {this.props.recieverInfo.split('-')[3] === 'P2P' ?
+
                 <div className="container">
-                <h2 className="font-weight-400 text-center mt-3">Send Money</h2>
-                <p className="text-4 text-center mb-4">You are sending money to <span className="font-weight-500">
+                <h2 className="font-weight-400 text-center mt-3">{Languages.page.cabenet_money_send.Уз_уз.t3}</h2>
+                <p className="text-4 text-center mb-4">{Languages.page.cabenet_money_send.Уз_уз.t13} <span className="font-weight-500">
                     {this.props.recieverInfo.split('-')[0].replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {this.props.recieverInfo.split('-')[0].replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}
                 </span></p>
                 <div className="row">
@@ -75,10 +84,10 @@ class ConfirmSendMoney extends React.Component {
                         <form id="form-send-money" method="post">
 
                         <div className="form-group">
-                                    <label>Card Number</label>
+                                    <label>{Languages.page.cabenet_money_send.Уз_уз.t14}</label>
                                     <select className="custom-select" onClick={this.handleCardSelect}>
 
-                                    <option>Select card</option>                                    
+                                    <option>{Languages.page.cabenet_money_send.Уз_уз.t15}</option>                                    
 
                                     {this.props.cards && 
                                         <>
@@ -98,20 +107,23 @@ class ConfirmSendMoney extends React.Component {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="description">Description</label>
-                            <textarea className="form-control" rows={4} id="description" required placeholder="Payment Description" defaultValue={""} />
+                            <label htmlFor="description">{Languages.page.cabenet_money_send.Уз_уз.t17}</label>
+                            <textarea className="form-control" rows={4} id="description" required placeholder={Languages.page.cabenet_money_send.Уз_уз.t17} defaultValue={""} />
                         </div>
-                        <h3 className="text-5 font-weight-400 mb-3">Details</h3>
-                        <p className="mb-1">Send Amount <span className="text-3 float-right">{(Number(this.props.recieverInfo.split('-')[4])).toLocaleString().split(',').join(' ')} UZS</span></p>
-                        <p className="mb-1">Total fees <span className="text-3 float-right">{(Number(this.props.recieverInfo.split('-')[4] * 0.05)).toLocaleString().split(',').join(' ')} UZS</span></p>
+                        <h3 className="text-5 font-weight-400 mb-3">{Languages.page.cabenet_money_send.Уз_уз.t16}</h3>
+                        <p className="mb-1">{Languages.page.cabenet_money_send.Уз_уз.t7} <span className="text-3 float-right">{(Number(this.props.recieverInfo.split('-')[4])).toLocaleString().split(',').join(' ')} UZS</span></p>
+                        <p className="mb-1">{Languages.page.cabenet_money_send.Уз_уз.t10} <span className="text-3 float-right">{(Number(this.props.recieverInfo.split('-')[4] * 0.05)).toLocaleString().split(',').join(' ')} UZS</span></p>
                         <hr />
-                        <p className="font-weight-500">Total<span className="text-3 float-right">{(Number(this.props.recieverInfo.split('-')[4] * 1.05)).toLocaleString().split(',').join(' ')} UZS</span></p>
-                        <a className="btn btn-primary btn-block text-white card-add-f-btn" id="confirm-send-money-btn" onClick={this.handleTaransfer}>Send Money</a>
+                        <p className="font-weight-500">{Languages.page.cabenet_money_send.Уз_уз.t11}<span className="text-3 float-right">{(Number(this.props.recieverInfo.split('-')[4] * 1.05)).toLocaleString().split(',').join(' ')} UZS</span></p>
+                        <a className="btn btn-primary btn-block text-white card-add-f-btn" id="confirm-send-money-btn" onClick={this.handleTaransfer}>{Languages.page.cabenet_money_send.Уз_уз.t3}</a>
                         </form>
                     </div>
                     </div>
                 </div>
                 </div>
+                    :
+                    ""
+                }
             </div>
         );
     }

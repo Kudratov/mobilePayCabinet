@@ -28,7 +28,7 @@ class MainFooter extends React.Component {
             <div className="footer-copyright pt-3 pt-lg-2 mt-2">
                 <div className="row">
                 <div className="col-lg">
-                    <p className="text-center text-lg-left mb-2 mb-lg-0">Copyright © 2019 <a href="#">Payyed</a>. All Rights Reserved.</p>
+                    <p className="text-center text-lg-left mb-2 mb-lg-0">Copyright © 2020 <a href="#">Winn</a>. All Rights Reserved.</p>
                 </div>
                 <div className="col-lg d-lg-flex align-items-center justify-content-lg-end">
                     <ul className="nav justify-content-center">
