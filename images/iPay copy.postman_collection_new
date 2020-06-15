@@ -1,0 +1,971 @@
+{
+	"info": {
+		"_postman_id": "5ff1cec9-a72c-4622-8b1f-2312f992521d",
+		"name": "iPay copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\" : \"998974489889\",\n\t\"password\": \"1111\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/identity-api/v1.0/users/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"identity-api",
+						"v1.0",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "004a866f-1c48-4e10-a1ca-b00d23460e92",
+						"exec": [
+							"pm.test(\"authToken\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.environment.set(\"token\", jsonData.auth_token);\r",
+							"    pm.environment.set(\"userName\", jsonData.login);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\" : \"998977338435\",\n\t\"password\": \"1111\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/identity-api/v1.0/auth/token",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"identity-api",
+						"v1.0",
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "49620516-14ef-4e78-ac9c-5790e6d279a7",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"code\": \"8914\",\n\t\"password\": \"1111\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/identity-api/v1.0/users/{{userName}}/verify/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"identity-api",
+						"v1.0",
+						"users",
+						"{{userName}}",
+						"verify",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Card",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"cardNumber\": \"9860090101932979\",\r\n\t\"expiresOn\": \"0225\",\r\n\t\"cardProduct\": \"Humo\",\r\n\t\"cardCvv2Value\": \"999\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{base_url}}/cards-api/v1.0/cards",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cards-api",
+						"v1.0",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all cards for user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/cards-api/v1.0/cards",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cards-api",
+						"v1.0",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get card",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/cards-api/v1.0/cards/bd0d92bd-b32b-43c7-b394-37fb9f978f53",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cards-api",
+						"v1.0",
+						"cards",
+						"bd0d92bd-b32b-43c7-b394-37fb9f978f53"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update card",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"op\": \"replace\",\n\t\t\"path\": \"/isMainCard\",\n\t\t\"value\": true\n\t},\n\t{\n\t\t\"op\": \"replace\",\n\t\t\"path\": \"/name\",\n\t\t\"value\": \"My agrobank 1\"\n\t}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/cards-api/v1.0/cards/753423a4-e2f4-41e9-ba7a-78f64bdb86f4",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cards-api",
+						"v1.0",
+						"cards",
+						"753423a4-e2f4-41e9-ba7a-78f64bdb86f4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete card",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/cards-api/v1.0/cards/6f1a20da-0b53-4fed-8d29-9a253cedf682",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cards-api",
+						"v1.0",
+						"cards",
+						"6f1a20da-0b53-4fed-8d29-9a253cedf682"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transfer funds(POST)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"receiverCardNumber\" : \"8600332972492940\",\r\n\t\"amout\": 1000,\r\n\t\"receiverCardNumberExpiresOn\": \"1023\",\r\n\t\"receiverFullName\": \"AZIZKHODJAEVA NIGORA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/p2p-api/v1.0/cards/1f54c65c-e783-4ee8-b2a4-89b864773dbb/fundstransfer",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"p2p-api",
+						"v1.0",
+						"cards",
+						"1f54c65c-e783-4ee8-b2a4-89b864773dbb",
+						"fundstransfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/identity-api/v1.0/users/{{userName}}/verify/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"identity-api",
+						"v1.0",
+						"users",
+						"{{userName}}",
+						"verify",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Receiver details",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/p2p-api/v1.0/receiverdetails/8600332972492940",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"p2p-api",
+						"v1.0",
+						"receiverdetails",
+						"8600332972492940"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User exists or not",
+			"request": {
+				"method": "HEAD",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/identity-api/v1.0/auth/token/{{userName}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"identity-api",
+						"v1.0",
+						"auth",
+						"token",
+						"{{userName}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get balance",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/cards-api/v1.0/cards/50c20981-daf0-4ec6-af1c-eda2f9dbd963/balance",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cards-api",
+						"v1.0",
+						"cards",
+						"50c20981-daf0-4ec6-af1c-eda2f9dbd963",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify card",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"code\": \"9825\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/cards-api/v1.0/cards/1f54c65c-e783-4ee8-b2a4-89b864773dbb/verify",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cards-api",
+						"v1.0",
+						"cards",
+						"1f54c65c-e783-4ee8-b2a4-89b864773dbb",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"from\": \"2020-05-23\",\n\t\"to\": \"2020-05-27\",\n\t\"pageNumber\": 1,\n\t\"pageSize\": 50,\n\t\"cardIds\": [ \"1c98f18d-c07f-4fba-b6c7-a5027b38ed22\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/transactions-api/v1.0/transactions",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"transactions-api",
+						"v1.0",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save transaction(favourite transaction)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/transactions-api/v1.0/favouritetransactions/a7a3c62d-cb1e-47dd-8a8c-aa643b39ffc2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"transactions-api",
+						"v1.0",
+						"favouritetransactions",
+						"a7a3c62d-cb1e-47dd-8a8c-aa643b39ffc2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Favourite transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/transactions-api/v1.0/favouritetransactions/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"transactions-api",
+						"v1.0",
+						"favouritetransactions",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get news",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/miscellaneous-api/v1.0/newsarticles/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"miscellaneous-api",
+						"v1.0",
+						"newsarticles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch news",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"op\": \"replace\",\n\t\t\"path\": \"/newsArticleStatusId\",\n\t\t\"value\": 1\n\t}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/miscellaneous-api/v1.0/newsarticles/1f19311d-f124-4256-a278-84b793156fae",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"miscellaneous-api",
+						"v1.0",
+						"newsarticles",
+						"1f19311d-f124-4256-a278-84b793156fae"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MiscellaneousReferences",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/miscellaneous-api/v1.0/references/newsarticlestatuses",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"miscellaneous-api",
+						"v1.0",
+						"references",
+						"newsarticlestatuses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get me",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/identity-api/v1.0/users/me",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"identity-api",
+						"v1.0",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get my receivers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/p2p-api/v1.0/receiverdetails/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"p2p-api",
+						"v1.0",
+						"receiverdetails",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete my funs tranfer receiver",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/p2p-api/v1.0/receiverdetails/8600332972492940",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"p2p-api",
+						"v1.0",
+						"receiverdetails",
+						"8600332972492940"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete my favourite transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/transactions-api/v1.0/favouritetransactions/{{transactionId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"transactions-api",
+						"v1.0",
+						"favouritetransactions",
+						"{{transactionId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "p2pToPhone",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"phoneNumber\" : \"998977036776\",\r\n  \"amount\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/p2p-api/v1.0/cards/b5e44ef0-1420-4c95-84cd-1ebaebe9141e/fundstransfer/idtophonenumber",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"p2p-api",
+						"v1.0",
+						"cards",
+						"b5e44ef0-1420-4c95-84cd-1ebaebe9141e",
+						"fundstransfer",
+						"idtophonenumber"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

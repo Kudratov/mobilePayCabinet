@@ -1,0 +1,20 @@
+{
+    "categories": [
+        {
+            "id": "1",
+            "name": "Узтелеком",
+            "img": "./../../images/homePhonePayments/telephone.png"
+        },
+        {
+            "id": "2",
+            "name": "Центральный телеграф",
+            "img": "./../../images/homePhonePayments/central-telegraph.png"
+        },
+        {
+            "id": "3",
+            "name": "Для международных звонков",
+            "img": "./../../images/homePhonePayments/central-telegraph2.png"
+        }
+    ],
+    "size": "3"
+}

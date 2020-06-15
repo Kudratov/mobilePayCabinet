@@ -166,7 +166,7 @@ class RecentActivity extends React.Component {
                                             <li className="font-weight-500">Paid By:</li>
                                             <li className="text-muted">{element.card.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {element.card.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}</li>
                                             </ul>
-                                            {element.transactionType.name === "P2P" &&
+                                            {/* {element.transactionType.name === "P2P" &&
                                             <ul className="list-unstyled">
                                             <li className="font-weight-500">Recieved By:</li>
                                             <li className="text-muted">{element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_card_number"})].value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_card_number"})].value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}</li>
@@ -175,7 +175,7 @@ class RecentActivity extends React.Component {
                                             <ul className="list-unstyled">
                                             <li className="font-weight-500">Reciever Name:</li>
                                             <li className="text-muted">{element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_name"})].value}</li>
-                                            </ul>}
+                                            </ul>} */}
                                             <ul className="list-unstyled">
                                             <li className="font-weight-500">Status:</li>
                                             <li className="text-muted">Completed</li>

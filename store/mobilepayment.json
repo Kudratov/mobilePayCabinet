@@ -1,0 +1,30 @@
+{
+    "categories": [
+        {
+            "id": "1",
+            "name": "Beeline",
+            "img": "./../../images/mobilePayments/beeline.png"
+        },
+        {
+            "id": "2",
+            "name": "Uzmobile-GSM",
+            "img": "./../../images/mobilePayments/uzmobile-gsm.png"
+        },
+        {
+            "id": "3",
+            "name": "Perfectum",
+            "img": "./../../images/mobilePayments/perfectum.png"
+        },
+        {
+            "id": "4",
+            "name": "Ums",
+            "img": "./../../images/mobilePayments/ums.png"
+        },
+        {
+            "id": "5",
+            "name": "Ucell",
+            "img": "./../../images/mobilePayments/ucell.png"
+        }
+    ],
+    "size": "5"
+}
