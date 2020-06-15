@@ -3,82 +3,98 @@
         {
             "id": "1",
             "name": "Сотовые операторы",
-            "url-name": "./../../images/payment/pay_mobile.png"
+            "url-name": "./../../images/payment/pay_mobile.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "2",
             "name": "Домашний телефон",
-            "url": "./../../images/payment/pay_tel.png"
+            "url": "./../../images/payment/pay_tel.png",
+            "dir": "/cabinet-homephone-payment"
         },
         {
             "id": "3",
             "name": "Интернет",
-            "url": "./../../images/payment/pay_net.png"
+            "url": "./../../images/payment/pay_net.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "7",
             "name": "Услуги",
-            "url": "./../../images/payment/pay_service.png"
+            "url": "./../../images/payment/pay_service.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "9",
             "name": "Телевидение",
-            "url": "./../../images/payment/pay_tv.png"
+            "url": "./../../images/payment/pay_tv.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "11",
             "name": "Такси",
-            "url": "./../../images/payment/pay_taxi.png"
+            "url": "./../../images/payment/pay_taxi.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "12",
             "name": "Зарубежные сервисы",
-            "url": "./../../images/payment/pay_zar.png"
+            "url": "./../../images/payment/pay_zar.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "4",
             "name": "IP телефония",
-            "url": "./../../images/payment/pay_ip.png"
+            "url": "./../../images/payment/pay_ip.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "6",
             "name": "Электроэнергия",
-            "url": "./../../images/payment/pay_insurance.png"
+            "url": "./../../images/payment/pay_insurance.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "14",
             "name": "Государственные услуги",
-            "url": "./../../images/payment/pay_gos.png"
+            "url": "./../../images/payment/pay_gos.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "5",
             "name": "Природный Газ",
-            "url": "./../../images/payment/pay_gaz.png"
+            "url": "./../../images/payment/pay_gaz.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "19",
             "name": "Банковские услуги",
-            "url": "./../../images/payment/pay_gaz.png"
+            "url": "./../../images/payment/pay_gaz.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "8",
             "name": "МахсусТранс",
-            "url": "./../../images/payment/pay_service.png"
+            "url": "./../../images/payment/pay_service.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "10",
             "name": "Холодная вода",
-            "url": "./../../images/payment/pay_voda.png"
+            "url": "./../../images/payment/pay_voda.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "15",
             "name": "Благотворительность",
-            "url": "./../../images/payment/pay_charity.png"
+            "url": "./../../images/payment/pay_charity.png",
+            "dir": "/cabinet-mobile-payment"
         },
         {
             "id": "17",
             "name": "Погашение кредитов",
-            "url": "./../../images/payment/pay_credit.png"
+            "url": "./../../images/payment/pay_credit.png",
+            "dir": "/cabinet-mobile-payment"
         }
     ],
     "size": "16"

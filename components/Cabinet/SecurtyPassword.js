@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
+import Languages from './../../store/languages.json';
 
 class SecurtyPassword extends React.Component {
     render() {        
@@ -6,10 +9,10 @@ class SecurtyPassword extends React.Component {
             <div>
                 <div>
                     <div className="bg-light shadow-sm rounded p-4">
-                        <h3 className="text-5 font-weight-400 mb-3">Security <a href="#change-password" data-toggle="modal" className="float-right text-1 text-uppercase text-muted btn-link"><i className="fas fa-edit mr-1" />Edit</a></h3>
+                        <h3 className="text-5 font-weight-400 mb-3">{Languages.page.cabinet_settings[this.props.language].t12} <a href="#change-password" data-toggle="modal" className="float-right text-1 text-uppercase text-muted btn-link"><i className="fas fa-edit mr-1" />Edit</a></h3>
                         <div className="row">
                         <p className="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">
-                            <label className="col-form-label">Password</label>
+                            <label className="col-form-label">{Languages.page.cabinet_settings[this.props.language].t13}</label>
                         </p>
                         <p className="col-sm-9">
                             <input type="password" className="form-control-plaintext" data-bv-field="password" id="password" defaultValue="EnterPassword" />
@@ -52,4 +55,10 @@ class SecurtyPassword extends React.Component {
     }
 }
 
-export default SecurtyPassword
+const mapStateToProps = (state)=>{
+    return {
+        language: state.language
+    }
+}
+
+export default connect(mapStateToProps)(SecurtyPassword);

@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
+import Languages from './../../store/languages.json';
 
 class PersonalDetails extends React.Component {
     render() {        
@@ -6,21 +9,21 @@ class PersonalDetails extends React.Component {
             <div>
                 <div>
                     <div className="bg-light shadow-sm rounded p-4 mb-4">
-                        <h3 className="text-5 font-weight-400 mb-3">Personal Details <a href="#edit-personal-details" data-toggle="modal" className="float-right text-1 text-uppercase text-muted btn-link"><i className="fas fa-edit mr-1" />Edit</a></h3>
+                        <h3 className="text-5 font-weight-400 mb-3">{Languages.page.cabinet_settings[this.props.language].t1} <a href="#edit-personal-details" data-toggle="modal" className="float-right text-1 text-uppercase text-muted btn-link"><i className="fas fa-edit mr-1" />Edit</a></h3>
                         <div className="row">
-                        <p className="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
-                        <p className="col-sm-9">Smith Rhodes</p>
+                        <p className="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">{Languages.page.cabinet_settings[this.props.language].t2}</p>
+                        <p className="col-sm-9">...... ...... ......</p>
                         </div>
                         <div className="row">
-                        <p className="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Date of Birth</p>
-                        <p className="col-sm-9">12-09-1982</p>
+                        <p className="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">{Languages.page.cabinet_settings[this.props.language].t14}</p>
+                        <p className="col-sm-9">DD-MM-YYYY</p>
                         </div>
                         <div className="row">
-                        <p className="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Address</p>
-                        <p className="col-sm-9">4th Floor, Plot No.22, Above Public Park, 145 Murphy Canyon Rd,  Suite 100-18,<br />
-                            San Ditego,<br />
-                            California - 22434,<br />
-                            United States.</p>
+                        <p className="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">{Languages.page.cabinet_settings[this.props.language].t3}</p>
+                        <p className="col-sm-9">Ziyolilar,  14,<br />
+                            Mirzo Ulug'bek,<br />
+                            Tashkent,<br />
+                            Uzbekistan.</p>
                         </div>
                     </div>
                     {/* Edit Details Modal
@@ -29,7 +32,7 @@ class PersonalDetails extends React.Component {
                         <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                            <h5 className="modal-title font-weight-400">Personal Details</h5>
+                            <h5 className="modal-title font-weight-400">{Languages.page.cabinet_settings[this.props.language].t1}</h5>
                             <button type="button" className="close font-weight-400" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                             </div>
                             <div className="modal-body p-4">
@@ -49,19 +52,19 @@ class PersonalDetails extends React.Component {
                                 </div>
                                 <div className="col-12">
                                     <div className="form-group">
-                                    <label htmlFor="birthDate">Date of Birth</label>
+                                    <label htmlFor="birthDate">{Languages.page.cabinet_settings[this.props.language].t14}</label>
                                     <div className="position-relative">
                                         <input id="birthDate" defaultValue="12-09-1982" type="text" className="form-control" required placeholder="Date of Birth" />
                                         <span className="icon-inside"><i className="fas fa-calendar-alt" /></span> </div>
                                     </div>
                                 </div>
                                 <div className="col-12">
-                                    <h3 className="text-5 font-weight-400 mt-3">Address</h3>
+                                    <h3 className="text-5 font-weight-400 mt-3">{Languages.page.cabinet_settings[this.props.language].t3}</h3>
                                     <hr />
                                 </div>
                                 <div className="col-12">
                                     <div className="form-group">
-                                    <label htmlFor="address">Address</label>
+                                    <label htmlFor="address">{Languages.page.cabinet_settings[this.props.language].t3}</label>
                                     <input type="text" defaultValue="4th Floor, Plot No.22, Above Public Park" className="form-control" data-bv-field="address" id="address" required placeholder="Address 1" />
                                     </div>
                                 </div>
@@ -76,71 +79,6 @@ class PersonalDetails extends React.Component {
                                     <label htmlFor="input-zone">State</label>
                                     <select className="custom-select" id="input-zone" name="zone_id">
                                         <option value> --- Please Select --- </option>
-                                        <option value={3613}>Alabama</option>
-                                        <option value={3614}>Alaska</option>
-                                        <option value={3615}>American Samoa</option>
-                                        <option value={3616}>Arizona</option>
-                                        <option value={3617}>Arkansas</option>
-                                        <option value={3618}>Armed Forces Africa</option>
-                                        <option value={3619}>Armed Forces Americas</option>
-                                        <option value={3620}>Armed Forces Canada</option>
-                                        <option value={3621}>Armed Forces Europe</option>
-                                        <option value={3622}>Armed Forces Middle East</option>
-                                        <option value={3623}>Armed Forces Pacific</option>
-                                        <option selected="selected" value={3624}>California</option>
-                                        <option value={3625}>Colorado</option>
-                                        <option value={3626}>Connecticut</option>
-                                        <option value={3627}>Delaware</option>
-                                        <option value={3628}>District of Columbia</option>
-                                        <option value={3629}>Federated States Of Micronesia</option>
-                                        <option value={3630}>Florida</option>
-                                        <option value={3631}>Georgia</option>
-                                        <option value={3632}>Guam</option>
-                                        <option value={3633}>Hawaii</option>
-                                        <option value={3634}>Idaho</option>
-                                        <option value={3635}>Illinois</option>
-                                        <option value={3636}>Indiana</option>
-                                        <option value={3637}>Iowa</option>
-                                        <option value={3638}>Kansas</option>
-                                        <option value={3639}>Kentucky</option>
-                                        <option value={3640}>Louisiana</option>
-                                        <option value={3641}>Maine</option>
-                                        <option value={3642}>Marshall Islands</option>
-                                        <option value={3643}>Maryland</option>
-                                        <option value={3644}>Massachusetts</option>
-                                        <option value={3645}>Michigan</option>
-                                        <option value={3646}>Minnesota</option>
-                                        <option value={3647}>Mississippi</option>
-                                        <option value={3648}>Missouri</option>
-                                        <option value={3649}>Montana</option>
-                                        <option value={3650}>Nebraska</option>
-                                        <option value={3651}>Nevada</option>
-                                        <option value={3652}>New Hampshire</option>
-                                        <option value={3653}>New Jersey</option>
-                                        <option value={3654}>New Mexico</option>
-                                        <option value={3655}>New York</option>
-                                        <option value={3656}>North Carolina</option>
-                                        <option value={3657}>North Dakota</option>
-                                        <option value={3658}>Northern Mariana Islands</option>
-                                        <option value={3659}>Ohio</option>
-                                        <option value={3660}>Oklahoma</option>
-                                        <option value={3661}>Oregon</option>
-                                        <option value={3662}>Palau</option>
-                                        <option value={3663}>Pennsylvania</option>
-                                        <option value={3664}>Puerto Rico</option>
-                                        <option value={3665}>Rhode Island</option>
-                                        <option value={3666}>South Carolina</option>
-                                        <option value={3667}>South Dakota</option>
-                                        <option value={3668}>Tennessee</option>
-                                        <option value={3669}>Texas</option>
-                                        <option value={3670}>Utah</option>
-                                        <option value={3671}>Vermont</option>
-                                        <option value={3672}>Virgin Islands</option>
-                                        <option value={3673}>Virginia</option>
-                                        <option value={3674}>Washington</option>
-                                        <option value={3675}>West Virginia</option>
-                                        <option value={3676}>Wisconsin</option>
-                                        <option value={3677}>Wyoming</option>
                                     </select>
                                     </div>
                                 </div>
@@ -425,4 +363,10 @@ class PersonalDetails extends React.Component {
     }
 }
 
-export default PersonalDetails
+const mapStateToProps = (state)=>{
+    return {
+        language: state.language
+    }
+}
+
+export default connect(mapStateToProps)(PersonalDetails);

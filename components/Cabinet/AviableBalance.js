@@ -7,7 +7,7 @@ import Cookie from 'js-cookie';
 
 import {addCard} from './../../store/actions/cartActions';
 import {url} from './../../store/urls';
-import {addAuthtoken, addPhoneNumber, addRecieverInfo, addCardIdToTransfer, addFavoriteTransaction, addTransactionHistory, addTransactionInfo, addTransactionCardIDs} from './../../store/actions/cartActions';
+import {addAuthtoken, addPhoneNumber, addRecieverInfo, addCardIdToTransfer, addFavoriteTransaction, addTransactionHistory, addTransactionInfo, addTransactionCardIDs, changeLanguage} from './../../store/actions/cartActions';
 
 import Languages from './../../store/languages.json';
 
@@ -157,8 +157,8 @@ class AviableBalance extends React.Component {
         return (
             <div className="bg-light shadow-sm rounded text-center p-3 mb-4">
                 <div className="text-17 text-light my-3"><i className="fas fa-wallet" /></div>
-                <h3 className="text-9 font-weight-400">{this.getBalance()} UZS</h3>
-                <p className="mb-2 text-muted opacity-8">{Languages.page.cabinet_main.Уз_уз.t30}</p>
+                <h3 className="text-7 font-weight-400">{this.getBalance()} UZS</h3>
+                <p className="mb-2 text-muted opacity-8">{Languages.page.cabinet_main[this.props.language].t30}</p>
                 <hr className="mx-n3" />
             </div>
         );

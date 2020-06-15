@@ -956,13 +956,13 @@ h2.resp-accordion:first-child {
       top: auto;
       left: 0;
       bottom: -1px;
-      border-bottom: 1px dotted #e0dede;
+      // border-bottom: 1px dotted #e0dede;
     }
     &:before {
       height: 100%;
       top: 0;
       left: -1px;
-      border-left: 1px dotted #e0dede;
+      // border-left: 1px dotted #e0dede;
     }
   }
   > .row > div a {

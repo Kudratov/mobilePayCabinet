@@ -19,7 +19,7 @@ class ProfileDashboard extends React.Component {
                             </aside>
                             <div className="col-lg-9">
                                 <CreditCards />
-                                <RecentActivity />                                
+                                <RecentActivity />                       
                             </div>
                         </div>
                     </div>

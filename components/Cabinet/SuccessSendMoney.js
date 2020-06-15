@@ -59,7 +59,7 @@ class SuccessSendMoney extends React.Component {
         return (
             <div id="content" className="py-4">
                 <div className="container">
-                <h2 className="font-weight-400 text-center mt-3 mb-4">{Languages.page.cabenet_money_send.Уз_уз.t3}</h2>
+                <h2 className="font-weight-400 text-center mt-3 mb-4">{Languages.page.cabenet_money_send[this.props.language].t3}</h2>
                 <div className="row">
                     <div className="col-md-8 col-lg-6 col-xl-5 mx-auto">
                     {/* Send Money Success

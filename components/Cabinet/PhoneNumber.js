@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
+import Languages from './../../store/languages.json';
 
 class PhoneNumber extends React.Component {
     render() {        
@@ -6,10 +9,10 @@ class PhoneNumber extends React.Component {
             <div>
                 <div>
                     <div className="bg-light shadow-sm rounded p-4 mb-4">
-                    <h3 className="text-5 font-weight-400 mb-3">Phone <a href="#edit-phone" data-toggle="modal" className="float-right text-1 text-uppercase text-muted btn-link"><i className="fas fa-edit mr-1" />Edit</a></h3>
+                    <h3 className="text-5 font-weight-400 mb-3">{Languages.page.cabinet_settings[this.props.language].t10} <a href="#edit-phone" data-toggle="modal" className="float-right text-1 text-uppercase text-muted btn-link"><i className="fas fa-edit mr-1" />Edit</a></h3>
                     <div className="row">
-                        <p className="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Mobile <span className="text-muted font-weight-500">(Primary)</span></p>
-                        <p className="col-sm-9">+1 202-555-0125</p>
+                        <p className="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">{Languages.page.cabinet_settings[this.props.language].t11} <span className="text-muted font-weight-500"></span></p>
+                        <p className="col-sm-9">+ --- -- --- -- --</p>
                     </div>
                     </div>
                     {/* Edit Details Modal
@@ -18,7 +21,7 @@ class PhoneNumber extends React.Component {
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title font-weight-400">Phone</h5>
+                            <h5 className="modal-title font-weight-400">{Languages.page.cabinet_settings[this.props.language].t10}</h5>
                             <button type="button" className="close font-weight-400" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                         </div>
                         <div className="modal-body p-4">
@@ -26,8 +29,8 @@ class PhoneNumber extends React.Component {
                             <div className="row">
                                 <div className="col-12">
                                 <div className="form-group">
-                                    <label htmlFor="mobileNumber">Mobile <span className="text-muted font-weight-500">(Primary)</span></label>
-                                    <input type="text" defaultValue="+1 202-555-0125" className="form-control" data-bv-field="mobilenumber" id="mobileNumber" required placeholder="Mobile Number" />
+                                    <label htmlFor="mobileNumber">{Languages.page.cabinet_settings[this.props.language].t11} <span className="text-muted font-weight-500"></span></label>
+                                    <input type="text" defaultValue="+ --- -- --- -- --" className="form-control" data-bv-field="mobilenumber" id="mobileNumber" required placeholder="Mobile Number" />
                                 </div>
                                 </div>
                             </div>
@@ -45,4 +48,10 @@ class PhoneNumber extends React.Component {
     }
 }
 
-export default PhoneNumber
+const mapStateToProps = (state)=>{
+    return {
+        language: state.language
+    }
+}
+
+export default connect(mapStateToProps)(PhoneNumber);

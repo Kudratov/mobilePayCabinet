@@ -16,10 +16,11 @@ class MyDocument extends Document {
                 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no" />
                     <link rel="icon" type="image/png" href={require("../images/logo.png")}></link>
                     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i' type='text/css'></link>                                  
-                    {/* <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />         */}
+                    <link rel="stylesheet" type="text/css" href="./../assets/css/bootstrap.min.css" />
+                    <link rel="stylesheet" type="text/css" href="./../assets/css/icofont.min.css" />
                     {/* <link rel="stylesheet" type="text/css" href="./../../../assets/sass/stylesheet.scss" /> */}
-                    {/* <link rel="stylesheet" type="text/css" href="./../assets/vendor/font-awesome/css/all.min.css" /> */}
-                    <link rel="stylesheet" type="text/css" href="./../_next/static/css/styles.chunk.css" />
+                    {/* <link rel="stylesheet" type="text/css" href="./../assets/vendor/font-awesome/css/all.min.css" />
+                    <link rel="stylesheet" type="text/css" href="./../_next/static/css/styles.chunk.css" /> */}
                 </Head>
                 <body>
                     <Main />

@@ -35,7 +35,7 @@ class ProfileTransactionHistory extends React.Component {
     render() {
         return (
             <div>
-                <h2 className="font-weight-400 mb-3">{Languages.page.cabenet_history.Уз_уз.t1}</h2>
+                <h2 className="font-weight-400 mb-3">{Languages.page.cabenet_history[this.props.language].t1}</h2>
                 {/* Filter
                 ============================================= */}
                 <div className="row">
@@ -90,11 +90,11 @@ class ProfileTransactionHistory extends React.Component {
                         </div>
                         {/* All Filters Link
                         ========================= */}
-                        <div className="col-auto d-flex align-items-center mr-auto form-group" data-toggle="collapse"> <a className="btn-link" data-toggle="collapse" href="#allFilters" aria-expanded="false" aria-controls="allFilters">{Languages.page.cabenet_history.Уз_уз.t3}<i className="fas fa-sliders-h text-3 ml-1" /></a> </div>
+                        <div className="col-auto d-flex align-items-center mr-auto form-group" data-toggle="collapse"> <a className="btn-link" data-toggle="collapse" href="#allFilters" aria-expanded="false" aria-controls="allFilters">{Languages.page.cabenet_history[this.props.language].t3}<i className="fas fa-sliders-h text-3 ml-1" /></a> </div>
                         {/* Statements Link
                         ========================= */}
                         <div className="col-auto d-flex align-items-center ml-auto form-group">
-                        <div className="dropdown"> <a className="text-muted btn-link" role="button" id="statements" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fas fa-file-download text-3 mr-1" />{Languages.page.cabenet_history.Уз_уз.t4}</a>
+                        <div className="dropdown"> <a className="text-muted btn-link" role="button" id="statements" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fas fa-file-download text-3 mr-1" />{Languages.page.cabenet_history[this.props.language].t4}</a>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="statements"> <a className="dropdown-item">CSV</a> <a className="dropdown-item" href="#">PDF</a> </div>
                         </div>
                         </div>
@@ -103,7 +103,7 @@ class ProfileTransactionHistory extends React.Component {
                         <div className="col-12 collapse mb-3" id="allFilters">
                         <div className="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="allTransactions" name="allFilters" className="custom-control-input" defaultChecked />
-                            <label className="custom-control-label" htmlFor="allTransactions">{Languages.page.cabenet_history.Уз_уз.t2}</label>
+                            <label className="custom-control-label" htmlFor="allTransactions">{Languages.page.cabenet_history[this.props.language].t2}</label>
                         </div>
                         <div className="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="paymentsSend" name="allFilters" className="custom-control-input" />

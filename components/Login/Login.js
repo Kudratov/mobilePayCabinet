@@ -9,6 +9,8 @@ import Toast from 'light-toast';
 import {url} from './../../store/urls';
 import {addAuthtoken, addPhoneNumber} from './../../store/actions/cartActions';
 
+import "./../../assets/sass/stylesheet.scss";
+
 import Languages from './../../store/languages.json';
 
 class Login extends Component {

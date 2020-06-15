@@ -50,15 +50,15 @@ class TransactionsHistoryLists extends React.Component {
         const next_btn = this.props.hasMore === 'true' ? '' : 'disabled';
         return (
             <div className="bg-light shadow-sm rounded py-4 mb-4">
-                <h3 className="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">{Languages.page.cabenet_history.Уз_уз.t2}</h3>
+                <h3 className="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">{Languages.page.cabenet_history[this.props.language].t2}</h3>
                 {/* Title
                     =============================== */}
                 <div className="transaction-title py-2 px-4">
                     <div className="row">
-                    <div className="col-2 col-sm-1 text-center"><span className>{Languages.page.cabenet_history.Уз_уз.t5}</span></div>
-                    <div className="col col-sm-7">{Languages.page.cabenet_history.Уз_уз.t9}</div>
-                    <div className="col-auto col-sm-2 d-none d-sm-block text-center">{Languages.page.cabenet_history.Уз_уз.t6}</div>
-                    <div className="col-3 col-sm-2 text-right">{Languages.page.cabenet_history.Уз_уз.t7}</div>
+                    <div className="col-2 col-sm-1 text-center"><span className>{Languages.page.cabenet_history[this.props.language].t5}</span></div>
+                    <div className="col col-sm-7">{Languages.page.cabenet_history[this.props.language].t9}</div>
+                    <div className="col-auto col-sm-2 d-none d-sm-block text-center">{Languages.page.cabenet_history[this.props.language].t6}</div>
+                    <div className="col-3 col-sm-2 text-right">{Languages.page.cabenet_history[this.props.language].t7}</div>
                     </div>
                 </div>
                 {/* Title End */}
@@ -86,7 +86,7 @@ class TransactionsHistoryLists extends React.Component {
                                             <span className="text-success" data-toggle="tooltip" data-original-title="Completed"><i className="fas fa-check-circle" /></span> 
                                         </div>
                                         <div className="col-3 col-sm-2 text-right text-4"> 
-                                            <span className="text-nowrap">{(element.amount/100) < 0 ? (element.amount/100).toLocaleString().split(',').join(' ') : '+' + (element.amount/100).toLocaleString().split(',').join(' ')}</span> <span className="text-2 text-uppercase">({element.card.currency.code})</span> 
+                                            <span className="text-nowrap">{element.paymentPurpose.code === "transfer" ? element.card.cardProduct.name === "UzCard" && element.amount > 0 ? `+${(element.amount/100).toLocaleString().split(',').join(' ')}` : `${(element.amount).toLocaleString().split(',').join(' ')}`  : `${(element.amount).toLocaleString().split(',').join(' ')}`}</span><br/> <span className="text-2 text-uppercase">{element.card.cardProduct.name === "UzCard" || element.card.cardProduct.name === "Humo" ? "(UZS)" : "(USD)"}</span> 
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@ class TransactionsHistoryLists extends React.Component {
 
         {this.props.transactionHistory && 
             <>
-            {this.props.transactionHistory.map((element, i) => {                
+            {this.props.transactionHistory.map((element, i) => {            
                 return (
                 <>
 
@@ -119,7 +119,7 @@ class TransactionsHistoryLists extends React.Component {
                                     <div className="my-auto text-center">
                                         <div className="text-17 text-white my-3"><i className="fas fa-building" /></div>
                                         <h3 className="text-4 text-white font-weight-400 my-3">{element.paymentPurpose.displayName.toUpperCase()}</h3>
-                                        <div className="text-8 font-weight-500 text-white my-4">+{(element.amount/100).toLocaleString().split(',').join(' ')}</div>
+                                        <div className="text-8 font-weight-500 text-white my-4">+{element.card.cardProduct.name === "UzCard" ? `${(element.amount/100*0.995).toLocaleString().split(',').join(' ')}` : `${(element.amount*0.995).toLocaleString().split(',').join(' ')}`}</div>
                                         <p className="text-white">{element.transactionDate.split("-")[2].split("T")[0]} {this.handleMonth(element.transactionDate.split("-")[1])} {element.transactionDate.split("-")[0]}</p>
                                     </div>
                                     </div>
@@ -130,7 +130,7 @@ class TransactionsHistoryLists extends React.Component {
                                     <hr />
                                     <div className="px-3">
                                         <ul className="list-unstyled">
-                                        <li className="mb-2 font-weight-500">Total Amount <span className="float-right text-3 font-weight-500">+{((element.amount/100)).toLocaleString().split(',').join(' ')}</span></li>
+                                        <li className="mb-2 font-weight-500">Total Amount <span className="float-right text-3 font-weight-500">+{element.card.cardProduct.name === "UzCard" ? `${(element.amount/100*0.995).toLocaleString().split(',').join(' ')}` : `${(element.amount*0.995).toLocaleString().split(',').join(' ')}`}</span></li>
                                         {/* <li className="mb-2">Fee <span className="float-right text-3">{((element.amount/100) - (element.amount/100)*100/100.5).toLocaleString().split(',').join(' ')}</span></li> */}
                                         </ul>
                                         <hr className="mb-2" />
@@ -170,7 +170,7 @@ class TransactionsHistoryLists extends React.Component {
                             <div className="my-auto text-center">
                                 <div className="text-17 text-white my-3"><i className="fas fa-building" /></div>
                                 <h3 className="text-4 text-white font-weight-400 my-3">{element.paymentPurpose.displayName.toUpperCase()}</h3>
-                                <div className="text-8 font-weight-500 text-white my-4">{(element.amount/100).toLocaleString().split(',').join(' ')}</div>
+                                <div className="text-8 font-weight-500 text-white my-4">{element.paymentPurpose.code === "transfer" ? element.card.cardProduct.name === "UzCard" ? `${(element.amount/100).toLocaleString().split(',').join(' ')}` : `${(element.amount).toLocaleString().split(',').join(' ')}`  : `${(element.amount).toLocaleString().split(',').join(' ')}`}</div>
                                 <p className="text-white">{element.transactionDate.split("-")[2].split("T")[0]} {this.handleMonth(element.transactionDate.split("-")[1])} {element.transactionDate.split("-")[0]}</p>
                             </div>
                             </div>
@@ -180,12 +180,14 @@ class TransactionsHistoryLists extends React.Component {
                             </h5>
                             <hr />
                             <div className="px-3">
+                                {element.paymentPurpose.code === "transfer" &&
                                 <ul className="list-unstyled">
-                                <li className="mb-2">Payment Amount <span className="float-right text-3">{((element.amount/100)*100/100.5).toLocaleString().split(',').join(' ')}</span></li>
-                                <li className="mb-2">Fee <span className="float-right text-3">{((element.amount/100) - (element.amount/100)*100/100.5).toLocaleString().split(',').join(' ')}</span></li>
+                                <li className="mb-2">Payment Amount <span className="float-right text-3">{element.card.cardProduct.name === "UzCard" ? `${(element.amount/100 * 0.995).toLocaleString().split(',').join(' ')}` : `${(element.amount * 0.995).toLocaleString().split(',').join(' ')}`}</span></li>
+                                <li className="mb-2">Fee <span className="float-right text-3">{element.card.cardProduct.name === "UzCard" ? `${(element.amount/100 * 0.005).toLocaleString().split(',').join(' ')}` : `${(element.amount * 0.005).toLocaleString().split(',').join(' ')}`}</span></li>
                                 </ul>
+                                }
                                 <hr className="mb-2" />
-                                <p className="d-flex align-items-center font-weight-500 mb-4">Total Amount <span className="text-3 ml-auto">{((element.amount/100)).toLocaleString().split(',').join(' ')}</span></p>
+                                <p className="d-flex align-items-center font-weight-500 mb-4">Total Amount <span className="text-3 ml-auto">{element.paymentPurpose.code === "transfer" ? element.card.cardProduct.name === "UzCard" ? `${(element.amount/100).toLocaleString().split(',').join(' ')}` : `${(element.amount).toLocaleString().split(',').join(' ')}`  : `${(element.amount).toLocaleString().split(',').join(' ')}`}</span></p>
                                 <ul className="list-unstyled">
                                 <li className="font-weight-500">Paid By:</li>
                                 <li className="text-muted">{element.card.cardNumber.split("")[0]}{element.card.cardNumber.split("")[1]}{element.card.cardNumber.split("")[2]}{element.card.cardNumber.split("")[3]} **** **** {element.card.cardNumber.split("")[12]}{element.card.cardNumber.split("")[13]}{element.card.cardNumber.split("")[14]}{element.card.cardNumber.split("")[15]}</li>
@@ -222,8 +224,8 @@ class TransactionsHistoryLists extends React.Component {
                 {/* Pagination
                     ============================================= */}
                 <ul className="pagination justify-content-center mt-4 mb-0">
-                    <li className={`page-item ${prev_btn}`}> <a onClick={e => this.handlePrevAndNext(Number(this.props.currentPage) - 1)} className="page-link"><i className="fas fa-angle-left" /> {Languages.page.cabenet_history.Уз_уз.t10}</a> </li>
-                    <li className={`page-item ${next_btn}`}> <a onClick={e => this.handlePrevAndNext(Number(this.props.currentPage) + 1)} className="page-link">{Languages.page.cabenet_history['Уз_уз'].t11} <i className="fas fa-angle-right" /></a> </li>
+                    <li className={`page-item ${prev_btn}`}> <a onClick={e => this.handlePrevAndNext(Number(this.props.currentPage) - 1)} className="page-link"><i className="fas fa-angle-left" /> {Languages.page.cabenet_history[this.props.language].t10}</a> </li>
+                    <li className={`page-item ${next_btn}`}> <a onClick={e => this.handlePrevAndNext(Number(this.props.currentPage) + 1)} className="page-link">{Languages.page.cabenet_history[this.props.language].t11} <i className="fas fa-angle-right" /></a> </li>
                 </ul>
                 {/* Paginations end */} 
                 </div>

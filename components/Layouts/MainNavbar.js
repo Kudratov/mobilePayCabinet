@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import Cookie from 'js-cookie';
+import {connect} from 'react-redux';
 
 // import 'react-dates/initialize';
 // import 'react-dates/lib/css/_datepicker.css';
@@ -56,11 +57,11 @@ class MainNavbar extends React.Component {
                         <nav className="primary-menu navbar navbar-expand-lg">
                             <div id="header-nav" className="collapse navbar-collapse">
                             <ul className="navbar-nav mr-auto">
-                                <li className={classForMain}><Link href="/cabinet-main"><a>{Languages.page.cabinet_main.Уз_уз.t1}</a></Link></li>
-                                <li className={classForHistory}><Link href="/cabinet-history">{Languages.page.cabinet_main.Уз_уз.t2}</Link></li>
-                                <li className={classForPayment}><Link href="/cabinet-payment">{Languages.page.cabinet_main.Уз_уз.t3}</Link></li>
-                                <li className={classForTransfer}><Link href="/cabinet-send">{Languages.page.cabinet_main.Уз_уз.t4}</Link></li>
-                                <li className={classForCards}><Link href="/cabinet-cards">{Languages.page.cabinet_main.Уз_уз.t5}</Link></li>
+                                <li className={classForMain}><Link href="/cabinet-main"><a>{Languages.page.cabinet_main[this.props.language].t1}</a></Link></li>
+                                <li className={classForHistory}><Link href="/cabinet-history">{Languages.page.cabinet_main[this.props.language].t2}</Link></li>
+                                <li className={classForPayment}><Link href="/cabinet-payment">{Languages.page.cabinet_main[this.props.language].t3}</Link></li>
+                                <li className={classForTransfer}><Link href="/cabinet-send">{Languages.page.cabinet_main[this.props.language].t4}</Link></li>
+                                <li className={classForCards}><Link href="/cabinet-cards">{Languages.page.cabinet_main[this.props.language].t5}</Link></li>
                             </ul>
                             </div>
                         </nav>
@@ -71,8 +72,8 @@ class MainNavbar extends React.Component {
                     ============================== */}
                         <nav className="login-signup navbar navbar-expand">
                             <ul className="navbar-nav">
-                            <li className={classForSettings}><Link href="/cabinet-settings">{Languages.page.cabinet_main.Уз_уз.t6}</Link> </li>
-                            <li className="align-items-center h-auto ml-sm-3"><a onClick={this.handleSignOut} className="btn btn-outline-primary shadow-none d-none d-sm-block card-add-f-btn">{Languages.page.cabinet_main.Уз_уз.t7}</a></li>
+                            <li className={classForSettings}><Link href="/cabinet-settings">{Languages.page.cabinet_main[this.props.language].t6}</Link> </li>
+                            <li className="align-items-center h-auto ml-sm-3"><a onClick={this.handleSignOut} className="btn btn-outline-primary shadow-none d-none d-sm-block card-add-f-btn">{Languages.page.cabinet_main[this.props.language].t7}</a></li>
                             </ul>
                         </nav>
                         {/* Login & Signup Link end */} 
@@ -85,4 +86,10 @@ class MainNavbar extends React.Component {
     }
 }
 
-export default MainNavbar
+const mapStateToProps = (state)=>{
+    return {
+        language: state.language
+    }
+}
+
+export default connect(mapStateToProps)(MainNavbar)

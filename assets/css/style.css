@@ -53,3 +53,18 @@
 .brand-color{
   color: #4f4693;
 }
+
+.resize-logo-Humo {
+  height: 50px;
+  width: 60px;
+}
+
+.resize-logo-Visa {
+  height: 50px;
+  width: 60px;
+}
+
+.logo-img-mobile-payment{
+  height: 5rem;
+  width: 5rem;
+}

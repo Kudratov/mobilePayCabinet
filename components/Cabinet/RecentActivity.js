@@ -21,8 +21,8 @@ class RecentActivity extends React.Component {
 
     handleRePay (info) {
         let conroller_btn = document.getElementById("controller-for-exit-modal");
-        this.props.dispatch(addRecieverInfo(info));
         conroller_btn.click();
+        this.props.dispatch(addRecieverInfo(info));        
         Router.push("/cabinet-confirm");
     }
 
@@ -71,15 +71,15 @@ class RecentActivity extends React.Component {
     render() {
         return (
             <div className="bg-light shadow-sm rounded py-4 mb-4">
-            <h3 className="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">{Languages.page.cabinet_main.Уз_уз.t23}</h3>
+            <h3 className="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">{Languages.page.cabinet_main[this.props.language].t23}</h3>
             {/* Title
                 =============================== */}
             <div className="transaction-title py-2 px-4">
             <div className="row">
-                <div className="col-2 col-sm-1 text-center"><span className>{Languages.page.cabinet_main.Уз_уз.t24}</span></div>
-                <div className="col col-sm-7">{Languages.page.cabinet_main.Уз_уз.t28}</div>
-                <div className="col-auto col-sm-2 d-none d-sm-block text-center">{Languages.page.cabinet_main.Уз_уз.t25}</div>
-                <div className="col-3 col-sm-2 text-right">{Languages.page.cabinet_main.Уз_уз.t26}</div>
+                <div className="col-2 col-sm-1 text-center"><span className>{Languages.page.cabinet_main[this.props.language].t24}</span></div>
+                <div className="col col-sm-7">{Languages.page.cabinet_main[this.props.language].t28}</div>
+                <div className="col-auto col-sm-2 d-none d-sm-block text-center">{Languages.page.cabinet_main[this.props.language].t25}</div>
+                <div className="col-3 col-sm-2 text-right">{Languages.page.cabinet_main[this.props.language].t26}</div>
             </div>
             </div>
             {/* Title End */}
@@ -109,7 +109,7 @@ class RecentActivity extends React.Component {
                                                     <span className="text-success" data-toggle="tooltip" data-original-title="Completed"><i className="fas fa-check-circle" /></span> 
                                                 </div>
                                                 <div className="col-3 col-sm-2 text-right text-4"> 
-                                                    <span className="text-nowrap">{((element.amount/100)*100/105).toLocaleString().split(',').join(' ')}</span> <span className="text-2 text-uppercase">({element.card.currency.code})</span> 
+                                                    <span className="text-nowrap">{element.transactionType.name === "P2P" ? element.card.cardProduct.name === "UzCard" ? `${(element.amount/100).toLocaleString().split(',').join(' ')}` : `${(element.amount).toLocaleString().split(',').join(' ')}`  : `${(element.amount).toLocaleString().split(',').join(' ')}`}</span><br/> <span className="text-2 text-uppercase">{element.card.cardProduct.name === "UzCard" || element.card.cardProduct.name === "Humo" ? "(UZS)" : "(USD)"}</span> 
                                                 </div>
                                             </div>
                                         </div>
@@ -144,7 +144,7 @@ class RecentActivity extends React.Component {
                                         <div className="my-auto text-center">
                                             <div className="text-17 text-white my-3"><i className="fas fa-building" /></div>
                                             <h3 className="text-4 text-white font-weight-400 my-3">{element.paymentPurpose.displayName.toUpperCase()}</h3>
-                                            <div className="text-8 font-weight-500 text-white my-4">{(element.amount/100).toLocaleString().split(',').join(' ')}</div>
+                                            <div className="text-8 font-weight-500 text-white my-4">{element.transactionType.name === "P2P" ? element.card.cardProduct.name === "UzCard" ? `${(element.amount/100).toLocaleString().split(',').join(' ')}` : `${(element.amount).toLocaleString().split(',').join(' ')}`  : `${(element.amount).toLocaleString().split(',').join(' ')}`}</div>
                                             <p className="text-white">{element.transactionDate.split("-")[2].split("T")[0]} {this.handleMonth(element.transactionDate.split("-")[1])} {element.transactionDate.split("-")[0]}</p>
                                         </div>
                                         </div>
@@ -154,24 +154,28 @@ class RecentActivity extends React.Component {
                                         </h5>
                                         <hr />
                                         <div className="px-3">
+                                            {element.transactionType.name === "P2P" &&
                                             <ul className="list-unstyled">
-                                            <li className="mb-2">Payment Amount <span className="float-right text-3">{((element.amount/100)*100/105).toLocaleString().split(',').join(' ')}</span></li>
-                                            <li className="mb-2">Fee <span className="float-right text-3">{((element.amount/100) - (element.amount/100)*100/105).toLocaleString().split(',').join(' ')}</span></li>
+                                            <li className="mb-2">Payment Amount <span className="float-right text-3">{element.card.cardProduct.name === "UzCard" ? `${(element.amount/100 * 0.995).toLocaleString().split(',').join(' ')}` : `${(element.amount * 0.995).toLocaleString().split(',').join(' ')}`}</span></li>
+                                            <li className="mb-2">Fee <span className="float-right text-3">{element.card.cardProduct.name === "UzCard" ? `${(element.amount/100 * 0.005).toLocaleString().split(',').join(' ')}` : `${(element.amount * 0.005).toLocaleString().split(',').join(' ')}`}</span></li>
                                             </ul>
+                                            }
                                             <hr className="mb-2" />
-                                            <p className="d-flex align-items-center font-weight-500 mb-4">Total Amount <span className="text-3 ml-auto">{((element.amount/100)).toLocaleString().split(',').join(' ')}</span></p>
+                                            <p className="d-flex align-items-center font-weight-500 mb-4">Total Amount <span className="text-3 ml-auto">{element.transactionType.name === "P2P" ? element.card.cardProduct.name === "UzCard" ? `${(element.amount/100).toLocaleString().split(',').join(' ')}` : `${(element.amount).toLocaleString().split(',').join(' ')}`  : `${(element.amount).toLocaleString().split(',').join(' ')}`}</span></p>
                                             <ul className="list-unstyled">
                                             <li className="font-weight-500">Paid By:</li>
                                             <li className="text-muted">{element.card.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {element.card.cardNumber.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}</li>
                                             </ul>
+                                            {element.transactionType.name === "P2P" &&
                                             <ul className="list-unstyled">
                                             <li className="font-weight-500">Recieved By:</li>
                                             <li className="text-muted">{element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_card_number"})].value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[0]} **** **** {element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_card_number"})].value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim().split(" ")[3]}</li>
-                                            </ul>
+                                            </ul>}
+                                            {element.transactionType.name === "P2P" &&
                                             <ul className="list-unstyled">
                                             <li className="font-weight-500">Reciever Name:</li>
                                             <li className="text-muted">{element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_name"})].value}</li>
-                                            </ul>
+                                            </ul>}
                                             <ul className="list-unstyled">
                                             <li className="font-weight-500">Status:</li>
                                             <li className="text-muted">Completed</li>
@@ -179,7 +183,7 @@ class RecentActivity extends React.Component {
                                             <ul className="list-unstyled pb-2">
                                             <li className="pb-4">
                                                 <span className="float-left"><a onClick={e => this.handleDeleteFavoriteTransaction(`${element.id}`)} className="btn btn-outline-primary btn-sm shadow-none d-none d-sm-block card-add-f-btn">Delete</a></span>
-                                                <span className="float-right"><a onClick={e => this.handleRePay(`${element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_card_number"})].value}-${element.properties[element.properties.findIndex(function(obj){return obj.key === "card_expiration_date"})].value}-${element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_name"})].value}-${element.transactionType.name}-${Math.abs((element.amount/100)*100/105)}`)} className="btn btn-outline-primary btn-sm shadow-none d-none d-sm-block card-add-f-btn">Pay</a></span>
+                                                <span className="float-right"><a data-dismiss="modal" aria-label="Close" onClick={e => this.handleRePay(`${element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_card_number"})].value}-${element.properties[element.properties.findIndex(function(obj){return obj.key === "card_expiration_date"})].value}-${element.properties[element.properties.findIndex(function(obj){return obj.key === "receiver_name"})].value}-${element.transactionType.name}-${Math.abs((element.amount/100)*100/105)}`)} className="btn btn-outline-primary btn-sm shadow-none d-none d-sm-block card-add-f-btn">Pay</a></span>
                                             </li>
                                             </ul>
                                         </div>
@@ -201,7 +205,7 @@ class RecentActivity extends React.Component {
             {/* Transaction Item Details Modal End */}
             {/* View all Link
                 =============================== */}
-            <div className="text-center mt-4"><Link href="/cabinet-history"><a className="btn-link text-3">{Languages.page.cabinet_main.Уз_уз.t27}<i className="fas fa-chevron-right text-2 ml-2" /></a></Link></div>
+            <div className="text-center mt-4"><Link href="/cabinet-history"><a className="btn-link text-3">{Languages.page.cabinet_main[this.props.language].t27}<i className="fas fa-chevron-right text-2 ml-2" /></a></Link></div>
         </div> 
         );
     }
