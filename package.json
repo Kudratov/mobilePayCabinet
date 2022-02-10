@@ -41,7 +41,7 @@
     "next-routes": "^1.4.2",
     "next-seo": "^2.0.0",
     "next-videos": "^1.1.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "npm": "^6.13.4",
     "react": "^16.8.6",
     "react-dates": "^21.8.0",
